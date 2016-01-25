@@ -158,9 +158,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsfile.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsstream.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsc.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/fsc/stdfsc.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsstring2.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsmemory.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsc.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fstrace.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsdll.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsstring.h" isTestSource="false" />
@@ -168,6 +168,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsfile.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsreg.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fstime.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsmemory.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fswav.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fslist.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsvar.cpp" isTestSource="false" />
@@ -180,7 +181,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsblockalloc.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fsdata.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fstrace.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/fsc/stdfsc.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/fsc/fscinit.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etsyn/etmrfsyn.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etsyn/fake.cpp" isTestSource="false" />
@@ -188,12 +188,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/noomen.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/par21-26.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/parpar.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/par1-10.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/lihtlisa.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/ykssilp.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/nomerand.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/par11-20.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/par1-10.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/parpar.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/nomnul.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/tee_para.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/par27-38.cpp" isTestSource="false" />
@@ -236,6 +236,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/lex/t3mesta/t3main.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/t3mesta/t3mitmesus.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/t3mesta/t3lexpre.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/etana.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/stlspeller.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/speller.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/speller.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/etsyn.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/etdisamb.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/nomvrb/lyli.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/nomvrb/nullityv.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/nomvrb/era_ind.cpp" isTestSource="false" />

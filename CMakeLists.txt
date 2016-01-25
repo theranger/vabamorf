@@ -4,6 +4,8 @@ project(vabamorf)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -DUNIX")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
+add_subdirectory(src/main)
+
 add_subdirectory(src/etsyn)
 add_subdirectory(src/etana)
 add_subdirectory(src/etyhh)
@@ -20,4 +22,3 @@ add_subdirectory(src/lex/palakuju)
 add_subdirectory(src/lex/t3mesta)
 add_subdirectory(src/lex/t3pakitud)
 add_subdirectory(src/lex/verb)
-add_subdirectory(src/vabamorf)
