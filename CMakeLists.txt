@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.3)
+project(vabamorf)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -DUNIX")
+
+add_subdirectory(src/etsyn)
+add_subdirectory(src/etana)
+add_subdirectory(src/etyhh)
+add_subdirectory(src/fsc)
+add_subdirectory(src/proof)
+add_subdirectory(src/nomvrb)
+
+add_subdirectory(src/lex/conv4)
+add_subdirectory(src/lex/conv11x)
+add_subdirectory(src/lex/init3)
+add_subdirectory(src/lex/noom)
+add_subdirectory(src/lex/palakuju)
+add_subdirectory(src/lex/t3mesta)
+add_subdirectory(src/lex/t3pakitud)
+add_subdirectory(src/lex/verb)
