@@ -1,3 +1,0 @@
-﻿Estonian speller for LibreOffice/OpenOffice.org (SOFTWARE).
-
-SOFTWARE is released under LGPL license.

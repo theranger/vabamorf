@@ -1,3 +1,0 @@
-﻿Eesti keele speller LibreOffice/OpenOffice.org-ile (edasipidi TARKVARA).
-
-TARKVARA on litsentseeritud LGPL litsentsi alusel.
