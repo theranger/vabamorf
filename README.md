@@ -1,14 +1,20 @@
-vabamorf
-========
+# Vabamorf
 
-Eesti keele morfanalüsaator
+This is a free morphological analyzer for Estonian language.
+Software is created and originally published by [Filosoft](https://github.com/Filosoft/vabamorf).
 
-Käsureaprogrammide kompileerimis- ja kasutusjuhend failis doc/readme.html
+The goal was to produce a generic library under Linux environment that can be linked into other projects.
 
-LibreOffice'i spelleri kompileerimisjuhend failis apps/plugin/libreoffice/readme.txt
+This fork from original build is therefore heavily refactored:
 
-Java integratsiooninäite juhend failis apps/cmdline/java/readme.html
+* Modified build tree structure to conform typical Open Source standards
+* Switched from classical GNU Make to Cmake
+* Switched to hierarchical component-level (static library) builds
+* Modified database generation scripts
+* Dropped support for LibreOffice and Java plugins
+* Removed Visual Studio project files
 
-Sõnastiku kompileerimisjuhend failis doc/readme.html
+Note that many parts of the original build tree use Estonian both in source code, comments and documentation.
+This has not been changed.
 
-Täiendav dokumentatioon doc kaustas
+No versioned builds or releases are currently available.
