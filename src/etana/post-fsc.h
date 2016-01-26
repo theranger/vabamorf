@@ -302,13 +302,13 @@ private:
 };
 
 /** Leiab faili @a pathname'i
- * 
+ *
  * @param[out] dctPathStr Leitud @a pathname
- * @param[in] path Sellest proovime katalooge. 
+ * @param[in] path Sellest proovime katalooge.
  *            Windowsis kataloogid eraldatud semikooloniga, Unixis kooloniga.
- * @param[in] file Vaatame kas sellise nimega fail asub mõnes 
+ * @param[in] file Vaatame kas sellise nimega fail asub mõnes
  *            ülaloetletud kataloogis.
- * @return 
+ * @return
  * <ul><li> @a true Leidus, muutujas @a dctPathStr vastav pathname
  */
 bool Which(CFSString* dctPathStr, const CFSString* path, const CFSString* file);
@@ -317,12 +317,12 @@ bool Which(CFSString* dctPathStr, const CFSString* path, const CFSString* file);
  *
  * Tükeldab stringi etteantud eraldajate kohalt massiviks.
  * Näiteks:
- * <ul><li> 
+ * <ul><li>
  * Tükeldame Unicode'is stringi white space'ide kohalt järjestatud massiviks:
  * @code
  * typedef TMPLPTRARRAYBIN&lt;PCFSWString,CFSWString&gt; TMPLPTRARRAYBIN_CFSWS;
  * TYKELDATUDPCFSSTRING&lt;PCFSWString, CFSWString, TMPLPTRARRAYBIN_CFSWS&gt; blaba;
- * blaba.Start(FSWSTR("Tere Talv"), FSWSTR(" \\t\\r\\n"), 3, 3); 
+ * blaba.Start(FSWSTR("Tere Talv"), FSWSTR(" \\t\\r\\n"), 3, 3);
  * blaba.Sort();
  * @endcode
  * <li>
@@ -330,7 +330,7 @@ bool Which(CFSString* dctPathStr, const CFSString* path, const CFSString* file);
  * @code
  * typedef TMPLPTRARRAY&lt;PCFSAString&gt; TMPLPTRARRAY_CFSAS;
  * TYKELDATUDPCFSSTRING&lt;PCFSAString, CFSAString, TMPLPTRARRAY_CFSAS&gt; bla;
- * bla.Start("Tere Talv", " \\t\\r\\n", 3, 3); 
+ * bla.Start("Tere Talv", " \\t\\r\\n", 3, 3);
  * @endcode
  * </ul>
  */
@@ -345,7 +345,7 @@ public:
     }
 
     /**
-     * 
+     *
      * @param[in] buf Tükeldatav string.
      * @param[in] eraldajad Eraldajad. Nende kohtade pealt tükeldame.
      * @param[in] algsuurus Tükikesi sisaldava (järjestava) massiivi algsuurus.
@@ -368,7 +368,7 @@ public:
     /// - \a ==false ebaõnnstus
 
     /**
-     * 
+     *
      * @param[in] buf Tükeldatav string.
      * @param[in] eraldajad Eraldajad. Nende kohtade pealt tükeldame.
      * @param[in] algsuurus Tükikesi sisaldava (järjestava) massiivi algsuurus.
@@ -430,9 +430,9 @@ namespace STRSOUP
 {
 
 /** Kontrollib, kas @a char* string koosneb ainult 7bitistest
- * 
+ *
  * @param[in] str Selle stringi koostist kontrollime.
- * @return 
+ * @return
  * <ul><li> @a true Koosneb ainult 7bitistest või oli NULL-viit
  *     <li> @a false Sisaldab mingit 8bitist koodi
  */
@@ -450,9 +450,9 @@ inline bool Ainult7Bitised(const signed char* str)
 }
 
 /** Kontrollib, kas @a unsigned @a char* string koosneb ainult 7bitistest
- * 
+ *
  * @param[in] str Selle stringi koostist kontrollime.
- * @return 
+ * @return
  * <ul><li> @a true Koosneb ainult 7bitistest või oli NULL-viit
  *     <li> @a false Sisaldab mingit 8bitist koodi
  */
@@ -469,8 +469,8 @@ inline bool Ainult7Bitised(const unsigned char* str)
 }
 
 /** Kaks 8bitist üheks FSWCHARiks (16 või 32 bitiseks).
- * 
- * @param[in] ptr Sellelt aadressilt keerame kahe esimese baidi 
+ *
+ * @param[in] ptr Sellelt aadressilt keerame kahe esimese baidi
  * järjekorra 'õigeks'.
  * @return Õigeks keeratud baidijärjega @a FSWCHAR. @n
  * @a (FSWCHAR)((ptr[0]|(ptr[1]<<8))&0xFFFF)
@@ -482,19 +482,19 @@ inline FSWCHAR Kahest(const unsigned char* ptr)
 }
 
 /** 16bitise 0-lõpulise stringi baidijärg õigeks, tulemus 0-lõpulisse stringi
- * 
+ *
  * @param[out] pWstr Siia paneme 'õigekskeeratud' baidijärjega stringi.
- * @attention Peab olema tagatud, 
+ * @attention Peab olema tagatud,
  * et @a wcslen(pStr) @a >= @a wcstrlen((wchar_t*)pStr)
  * @param[in] pStr Esialgse baidijärjega string.
  * @return Funktsiooni väärtuseks on 'õigeks'
- * keeratud baidipaaride arv. Stringilõputunnus 
+ * keeratud baidipaaride arv. Stringilõputunnus
  * läheb ka arvesse. Kasutab funktsiooni Kahest().
- * @attention Peab olema tagatud, 
+ * @attention Peab olema tagatud,
  * et @a wcslen(pStr) @a >= @a wcstrlen((wchar_t*)pStr)
  *
  *  Oli süsteemi mõttes, reaalselt ei kasuta
- * 
+ *
 inline int FixStrByteOrder(FSWCHAR* pWstr, const unsigned char* pStr)
 {
     assert(pWstr != NULL && pStr != NULL);
@@ -512,7 +512,7 @@ inline int FixStrByteOrder(FSWCHAR* pWstr, const unsigned char* pStr)
 */
 
 /** 16bitise 0-lõpulise stringi baidijärg õigeks, tulemus stringiklassi
- * 
+ *
  * @param[out] pcWstr Siia paneme 'õigekskeeratud' baidijärjega stringi.
  * Sobib ka @a FSXSTRING \a *pcWstr.
  * @param[in] pStr Esialgse baidijärjega string.
@@ -552,9 +552,9 @@ inline int FixStrByteOrder(CFSWString& cWstr, const unsigned char* pStr)
 }
 
 /** Positiivne number stringi(klassile) sappa
- * 
- * Numbri kirjutame olemaolevale stringile sappa lisaks! 
- * 
+ *
+ * Numbri kirjutame olemaolevale stringile sappa lisaks!
+ *
  * Malliparameetrid:
  * <ul><li> NUMTYPE = {int, long, ...}
  *    <li> STRCTYPE = { CFSAString, CFSWString, ...}
@@ -595,7 +595,7 @@ inline void UnsignedNum2Str(NUMTYPE num, STRCTYPE& fsStr)
 }
 
 /** String (märgita) 10nd-numbriks
- * 
+ *
  * Malliparameetrid:
  * <ul><li> NUMTYPE = {int, long, ...}
  *     <li> STRTYPE = {char, FSWCHAR, FSTCHAR, ...}
@@ -604,9 +604,9 @@ inline void UnsignedNum2Str(NUMTYPE num, STRCTYPE& fsStr)
  * @param[in] pStr Sellest stringist õngitseme (märgita) numbri.
  * Kui string ei alanud numbriga \a (0-9),
  * tagastatakse @a 0. Märk @a (+-) ei sobi numbrit alustama.
- * @return Funktsiooni väärtuseks on arvuks teisendatud 
+ * @return Funktsiooni väärtuseks on arvuks teisendatud
  * numbrite hulk. Kui string ei alanud numbriga @a (0-9),
- * tagastatakse @a 0. 
+ * tagastatakse @a 0.
  * Märk @a (+-) ei sobi numbrit alustama.
  */
 template <class NUMTYPE, class STRTYPE>
@@ -621,7 +621,7 @@ inline int UnsignedStr2Num(NUMTYPE* pNum, const STRTYPE* pStr)
 }
 
 /** String (märgita) 8nd-numbriks
- * 
+ *
  * Malliparameetrid:
  * <ul><li> NUMTYPE = {int, long, ...}
  *     <li> STRTYPE = {char, FSWCHAR, FSTCHAR, ...}
@@ -630,9 +630,9 @@ inline int UnsignedStr2Num(NUMTYPE* pNum, const STRTYPE* pStr)
  * @param[in] pStr Sellest stringist õngitseme (märgita) numbri.
  * Kui string ei alanud numbriga \a (0-9),
  * tagastatakse @a 0. Märk @a (+-) ei sobi numbrit alustama.
- * @return Funktsiooni väärtuseks on arvuks teisendatud 
+ * @return Funktsiooni väärtuseks on arvuks teisendatud
  * numbrite hulk. Kui string ei alanud numbriga @a (0-7),
- * tagastatakse @a 0. 
+ * tagastatakse @a 0.
  * Märk @a (+-) ei sobi numbrit alustama.
  */
 template <class NUMTYPE, class STRTYPE>
@@ -652,7 +652,7 @@ inline int UnsignedStr2Oct(NUMTYPE* pNum, const STRTYPE* pStr)
 }
 
 /** String (märgita) 16nd-numbriks
- * 
+ *
  * Malliparameetrid:
  * <ul><li> NUMTYPE = {int, long, ...}
  *     <li> STRTYPE = {char, FSWCHAR, FSTCHAR, ...}
@@ -661,9 +661,9 @@ inline int UnsignedStr2Oct(NUMTYPE* pNum, const STRTYPE* pStr)
  * @param[in] pStr Sellest stringist õngitseme (märgita) numbri.
  * Kui string ei alanud numbriga \a (0-9),
  * tagastatakse @a 0. Märk @a (+-) ei sobi numbrit alustama.
- * @return Funktsiooni väärtuseks on arvuks teisendatud 
+ * @return Funktsiooni väärtuseks on arvuks teisendatud
  * numbrite hulk. Kui string ei alanud numbriga @a (0-9a-fA-F),
- * tagastatakse @a 0. 
+ * tagastatakse @a 0.
  * Märk @a (+-) ei sobi numbrit alustama.
  */
 template <class NUMTYPE, class STRTYPE>
@@ -693,7 +693,7 @@ inline int UnsignedStr2Hex(NUMTYPE* pNum, const STRTYPE* pStr)
 //
 /// NUMTYPE = {int, long, ...}
 /// STRTYPE = {char, FSWCHAR, FSTCHAR, ...}
-/// @return Funktsiooni väärtuseks on arvuks teisendatud 
+/// @return Funktsiooni väärtuseks on arvuks teisendatud
 /// numbrite hulk. Kui string ei alanud numbriga \a (0-9)
 /// väi märgiga \a (+-), tagastatakse \a 0.
 
@@ -732,7 +732,7 @@ inline int SignedStr2Num(//==numbri pikkus stringis
 
 /// Loeb stringist märgita/märgiga arvu 1/2/4 baidisena.
 //
-// TYPE2READ={UB1, UB2, UB4} 
+// TYPE2READ={UB1, UB2, UB4}
 // TYPE4ARG={(un)signed char, (un)signed short, (un)signed int, (un)signed long, enum} jne
 
 template <class TYPE2READ, class TYPE4ARG>
@@ -790,12 +790,7 @@ inline void WriteUnsignedToString(
     FSUNUSED(writeArg);
     assert(pStr != NULL);
     assert(sizeof (TYPE2WRITE) == 1u || sizeof (TYPE2WRITE) == 2u || sizeof (TYPE2WRITE) == 4u);
-    assert(sizeof (TYPE4ARG) == 1u || sizeof (TYPE4ARG) == 2u || sizeof (TYPE4ARG) == 4u);
     assert(sizeof (TYPE2WRITE) <= sizeof (TYPE4ARG));
-    // kontrollime, kas number on piisavalt väike, et kõik bitid ära mahuksid
-    assert((sizeof (TYPE2WRITE) == sizeof (TYPE4ARG)) ||
-           ((sizeof (TYPE2WRITE) == 1u) && ((num & 0x000000ff) == num)) ||
-           ((sizeof (TYPE2WRITE) == 2u) && ((num & 0x0000ffff) == num)));
     for (unsigned int i = 0; i < sizeof (TYPE2WRITE); i++)
     {
         pStr[i] = (unsigned char) ((num >> (i * 8u))&0xFF);
@@ -814,12 +809,12 @@ public:
     CPFSFile(void) : dontClose(true)
     {
     };
-    
+
     /** Avab faili
-     * 
+     *
      * @param fileName -- faili nimi
      * @param lpszMode -- sama mis @a ::fopen() funktsioonil
-     * @return 
+     * @return
      * <ul><li> @a bool -- õnnestus
      *      <li> @a false -- äpardus
      * </ul>
@@ -1044,7 +1039,7 @@ public:
 
     /// Loeb failist baite stringipuhvrisse
     //
-    /// @return 
+    /// @return
     /// - @a ==true Luges vähemalt ühe baidi
     /// - @a ==false Ei lugenud ühtegi baiti (eof)
 
@@ -1376,7 +1371,7 @@ public:
 
     /// Sulgeb faili.
     //
-    /// Kui eelnevalt kasutati Open(FILE *) funktsiooni 
+    /// Kui eelnevalt kasutati Open(FILE *) funktsiooni
     /// (argumendiks reeglina @a stdin, @a stdout või @a stderr),
     /// siis faili ei suleta.
     /// @return
@@ -1954,11 +1949,11 @@ public:
         assert(key != NULL);
         if (key == NULL)
             throw VEAD(ERR_X_TYKK, ERR_ARGVAL, __FILE__, __LINE__);
-        
+
         //assert(sortOrder == sortByUCchar);
         //if (sortOrder != sortByUCchar)
         //    throw VEAD(ERR_X_TYKK, ERR_ARGVAL, __FILE__, __LINE__);
-        
+
         return (int) uc - (int) * key;
     }
 
