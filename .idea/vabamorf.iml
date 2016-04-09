@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/json/json.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/json/json.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/json/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jni/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jni/JVabamorf.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etyhh/t3common.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etyhh/t3lex.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etyhh/et3myh.cpp" isTestSource="false" />
@@ -196,19 +198,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/parpar.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/nomnul.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/noom/tee_para.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/par27-38.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/vteepar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/kogupara.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/verbera.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/vparpar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/verb.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv4/dctcnv4.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv4/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv11x/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv11x/dctcnv11.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/palakuju/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/lex/palakuju/dctcnvpala.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/init3/init.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/init3/cxxinit3.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/init3/init_gr.cpp" isTestSource="false" />
@@ -224,6 +213,19 @@
       <sourceFolder url="file://$MODULE_DIR$/src/lex/init3/test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/init3/result.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/init3/wfi.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/par27-38.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/vteepar.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/kogupara.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/verbera.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/vparpar.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/verb/verb.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv11x/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv11x/dctcnv11.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/palakuju/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/palakuju/dctcnvpala.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv4/dctcnv4.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/lex/conv4/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/t3pakitud/t3_pakitud.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/t3pakitud/t3pakikokku.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/lex/t3pakitud/CMakeLists.txt" isTestSource="false" />
@@ -252,17 +254,28 @@
       <sourceFolder url="file://$MODULE_DIR$/src/nomvrb/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/nomvrb/lgr.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/java/src/CMakeLists.txt" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/Release" />
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/Debug" />
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/RelWithDebInfo" />
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/MinSizeRel" />
+          <root url="file:///usr/lib/jvm/jdk-8-oracle-x64/include" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
         </CLASSES>
         <SOURCES>
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/Release" />
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/Debug" />
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/RelWithDebInfo" />
+          <root url="file://$USER_HOME$/.CLion2016.1/system/cmake/generated/vabamorf-6d142e85/6d142e85/MinSizeRel" />
+          <root url="file:///usr/lib/jvm/jdk-8-oracle-x64/include" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
           <root url="file:///usr/include" />
