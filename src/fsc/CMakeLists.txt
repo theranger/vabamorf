@@ -44,5 +44,8 @@ set(SOURCE_FILES
 	stdfsc.h
 )
 
-add_library(${MODULE_NAME} ${SOURCE_FILES})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/java/lib")
+add_library(${MODULE_NAME} STATIC ${SOURCE_FILES})
+add_library(${MODULE_NAME}-shared SHARED ${SOURCE_FILES})
+set_target_properties(${MODULE_NAME}-shared PROPERTIES OUTPUT_NAME ${MODULE_NAME})
 target_link_libraries(${MODULE_NAME} pthread)

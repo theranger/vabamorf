@@ -22,3 +22,4 @@ add_library(${MODULE_NAME} SHARED ${SOURCE_FILES})
 
 # Ensure that Java is built and JNI header is generated before trying to build this module
 add_dependencies(${MODULE_NAME} JVabamorf)
+target_link_libraries(${MODULE_NAME} vabamorf-fsc-shared vabamorf-proof-shared vabamorf-etana-shared)
