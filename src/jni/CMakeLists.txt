@@ -16,7 +16,7 @@ set(MODULE_NAME ${PROJECT_NAME}-jni)
 
 set(SOURCE_FILES
 		JVabamorf.cpp
-		)
+		JNIException.cpp JNIException.h)
 
 add_library(${MODULE_NAME} SHARED ${SOURCE_FILES})
 

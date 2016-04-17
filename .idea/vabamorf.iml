@@ -6,7 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/json/json.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/json/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/jni/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jni/JNIException.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/jni/JVabamorf.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jni/JNIException.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etyhh/t3common.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etyhh/t3lex.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/etyhh/et3myh.cpp" isTestSource="false" />
