@@ -11,8 +11,13 @@ public class JVabamorf {
 	}
 
 	public static void main(String[] args) throws LinguisticException {
+		if (args.length !=2) {
+			System.err.println("Usage: JVabamorf <et.dct> <corpus_string>");
+			return;
+		}
+
 		JVabamorf jVabamorf = new JVabamorf();
 		System.out.println(jVabamorf.getModuleName());
-		jVabamorf.analyze("This is my corpus", "data.dat");
+		jVabamorf.analyze(args[1], args[0]);
 	}
 }
