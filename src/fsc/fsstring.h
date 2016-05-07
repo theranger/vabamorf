@@ -63,11 +63,11 @@ inline bool FSIsLetter(LCHAR Char) { return Char<0x10000 && FSIsLetter((WCHAR)Ch
 * @param[in] pszStr Pointer to string.
 * @return Length of the string.
 */
-inline INTPTR FSStrLen(const char *pszStr) { 
-	return strlen(pszStr); 
+inline INTPTR FSStrLen(const char *pszStr) {
+	return strlen(pszStr);
 }
-inline INTPTR FSStrLen(const wchar_t *pszStr) { 
-	return wcslen(pszStr); 
+inline INTPTR FSStrLen(const wchar_t *pszStr) {
+	return wcslen(pszStr);
 }
 template <class CHARTYPE>
 INTPTR FSStrLen(const CHARTYPE *pszStr)
@@ -87,11 +87,11 @@ INTPTR FSStrLen(const CHARTYPE *pszStr)
 * @retval <0 String1 is less that String2.
 * @retval >0 String1 is greater that String2.
 */
-inline int FSStrCmp(const char *pszStr1, const char *pszStr2) { 
-	return strcmp(pszStr1, pszStr2); 
+inline int FSStrCmp(const char *pszStr1, const char *pszStr2) {
+	return strcmp(pszStr1, pszStr2);
 }
-inline int FSStrCmp(const wchar_t *pszStr1, const wchar_t *pszStr2) { 
-	return wcscmp(pszStr1, pszStr2); 
+inline int FSStrCmp(const wchar_t *pszStr1, const wchar_t *pszStr2) {
+	return wcscmp(pszStr1, pszStr2);
 }
 template <class CHARTYPE>
 int FSStrCmp(const CHARTYPE *pszStr1, const CHARTYPE *pszStr2)
@@ -122,7 +122,7 @@ inline void FSStrCpy(char *pszDest, INTPTR ipDestSize, const char *pszSrc) {
 	strcpy_s(pszDest, ipDestSize, pszSrc);
 }
 
-inline void FSStrCpy(wchar_t *pszDest, INTPTR ipDestSize, const wchar_t *pszSrc) { 
+inline void FSStrCpy(wchar_t *pszDest, INTPTR ipDestSize, const wchar_t *pszSrc) {
 	RT_ASSERT(ipDestSize>0);
 	wcscpy_s(pszDest, ipDestSize, pszSrc);
 }
@@ -149,12 +149,12 @@ void FSStrCpy(CHARTYPE *pszDest, INTPTR ipDestSize, const CHARTYPE *pszSrc)
 * @return Pointer to pszDest.
 */
 #if defined (WIN32)
-inline void FSStrCat(char *pszDest, INTPTR ipDestSize, const char *pszSrc) { 
+inline void FSStrCat(char *pszDest, INTPTR ipDestSize, const char *pszSrc) {
 	RT_ASSERT(ipDestSize>0);
 	strcat_s(pszDest, ipDestSize, pszSrc);
 }
 
-inline void FSStrCat(wchar_t *pszDest, INTPTR ipDestSize, const wchar_t *pszSrc) { 
+inline void FSStrCat(wchar_t *pszDest, INTPTR ipDestSize, const wchar_t *pszSrc) {
 	RT_ASSERT(ipDestSize>0);
 	wcscat_s(pszDest, ipDestSize, pszSrc);
 }
@@ -175,11 +175,11 @@ void FSStrCat(CHARTYPE *pszDest, INTPTR ipDestSize, const CHARTYPE *pszSrc)
 * @return Pointer to leftmost existence of pszSearch in pszStr.
 * @retval 0 Not found.
 */
-inline const char *FSStrStr(const char *pszStr, const char *pszSearch) { 
-	return strstr(pszStr, pszSearch); 
+inline const char *FSStrStr(const char *pszStr, const char *pszSearch) {
+	return strstr(pszStr, pszSearch);
 }
-inline const wchar_t *FSStrStr(const wchar_t *pszStr, const wchar_t *pszSearch) { 
-	return wcsstr(pszStr, pszSearch); 
+inline const wchar_t *FSStrStr(const wchar_t *pszStr, const wchar_t *pszSearch) {
+	return wcsstr(pszStr, pszSearch);
 }
 template <class CHARTYPE>
 const CHARTYPE *FSStrStr(const CHARTYPE *pszStr, const CHARTYPE *pszSearch)
@@ -201,11 +201,11 @@ const CHARTYPE *FSStrStr(const CHARTYPE *pszStr, const CHARTYPE *pszSearch)
 * @return Pointer to leftmost existence of cChar in pszStr.
 * @retval 0 Not found.
 */
-inline const char *FSStrChr(const char *pszStr, char cChar) { 
-	return strchr(pszStr, cChar); 
+inline const char *FSStrChr(const char *pszStr, char cChar) {
+	return strchr(pszStr, cChar);
 }
-inline const wchar_t *FSStrChr(const wchar_t *pszStr, wchar_t cChar) { 
-	return wcschr(pszStr, cChar); 
+inline const wchar_t *FSStrChr(const wchar_t *pszStr, wchar_t cChar) {
+	return wcschr(pszStr, cChar);
 }
 template <class CHARTYPE>
 const CHARTYPE *FSStrChr(const CHARTYPE *pszStr, CHARTYPE cChar)
@@ -246,11 +246,11 @@ const CHARTYPE *FSStrRStr(const CHARTYPE *pszStr, const CHARTYPE *pszSearch)
 * @return Pointer to rightmost existence of cChar in pszStr.
 * @retval 0 Not found.
 */
-inline const char *FSStrRChr(const char *pszStr, char cChar) { 
-	return strrchr(pszStr, cChar); 
+inline const char *FSStrRChr(const char *pszStr, char cChar) {
+	return strrchr(pszStr, cChar);
 }
-inline const wchar_t *FSStrRChr(const wchar_t *pszStr, wchar_t cChar) { 
-	return wcsrchr(pszStr, cChar); 
+inline const wchar_t *FSStrRChr(const wchar_t *pszStr, wchar_t cChar) {
+	return wcsrchr(pszStr, cChar);
 }
 template <class CHARTYPE>
 const CHARTYPE *FSStrRChr(const CHARTYPE *pszStr, CHARTYPE cChar)
@@ -436,7 +436,7 @@ public:
 			for (INTPTR ip=0; ip<ipLength; ip++){
 				if (!pszStr[ip]) {
 					ipLength=ip;
-					break; 
+					break;
 				}
 				m_pszStr[ip]=pszStr[ip];
 			}
@@ -481,7 +481,7 @@ public:
 * @retval true String is empty.
 * @retval false Otherwise.
 */
-	bool IsEmpty() const 
+	bool IsEmpty() const
 	{
 		return m_pszStr[0]==0;
 	}
@@ -590,7 +590,7 @@ public:
 * @return Extracted string.
 */
 	CFSBaseString SpanIncluding(const CHARTYPE *pszStr) const
-	{ 
+	{
 		CFSBaseString szResult;
 		if (!pszStr) {
 			return szResult;
@@ -967,7 +967,7 @@ public:
 		if (ipStartPos<0 || ipStartPos>ipMyLength) {
 			return;
 		}
-		if (GetData()->IsLocked()) { 
+		if (GetData()->IsLocked()) {
 			if (IsOverlapped(pszStr)) {
 				Insert(ipStartPos, CFSBaseString(pszStr));
 				return;
@@ -1103,7 +1103,7 @@ public:
 * @return Number of characters removed from the beginning.
 * @sa TrimLeft, TrimRight
 */
-	INTPTR Trim() 
+	INTPTR Trim()
 	{
 		TrimRight();
 		return TrimLeft();
@@ -1115,7 +1115,7 @@ public:
 * @return Number of characters removed from the beginning.
 * @sa TrimLeft, TrimRight
 */
-	INTPTR Trim(const CHARTYPE *pszStr) 
+	INTPTR Trim(const CHARTYPE *pszStr)
 	{
 		TrimRight(pszStr);
 		return TrimLeft(pszStr);
@@ -1125,7 +1125,7 @@ public:
 * Casts string into 0-terminated C-string.
 * @return Pointer to 0-terminated string.
 */
-	operator const CHARTYPE* () const 
+	operator const CHARTYPE* () const
 	{
 		return m_pszStr;
 	}
@@ -1271,7 +1271,7 @@ public:
 			if (!ch1) {
 				return 0;
 			}
-		}	
+		}
 	}
 
 /**
@@ -1370,7 +1370,7 @@ public:
 					else if (strchr("+ #", Ch)!=0) {
 						cFlag=Ch;
 					}
-					else { 
+					else {
 						iPos--;
 						iMode=__WIDTH;
 					}
@@ -1394,7 +1394,7 @@ public:
 					else if (strchr("0123456789", Ch)!=0) {
 						iPrec=iPrec*10+(Ch-'0');
 					}
-					else { 
+					else {
 						iMode=__SIZE;
 						iPos--;
 					}
@@ -1667,7 +1667,7 @@ public:
 	}
 
 	friend bool operator ==(const CFSBaseString &szStr1, const CFSBaseString &szStr2)
-	{ 
+	{
 		return szStr1.Compare(szStr2)==0;
 	}
 	friend bool operator ==(const CFSBaseString &szStr1, const CHARTYPE *pszStr2)
@@ -1829,7 +1829,7 @@ protected:
 #else
 		snprintf(szBuf1, 127, "%%%s%s%s%d.%d%c", (bLeftAlign ? "-" : ""), pszPrefix, szFill, iMinLength, iPrecision, cMain);  szBuf1[127]=0;
 		snprintf(szBuf2, 1023, szBuf1, dDouble); szBuf2[1023]=0;
-#endif		
+#endif
 		return FromAscii7(szBuf2);
 	}
 
@@ -1963,4 +1963,4 @@ typedef CFSBaseString<WCHAR, CFSStrFunctions<WCHAR> > CFSWString;
 	#define CFSStringArray CFSAStringArray
 #endif
 
-#endif // _FSSTRING_H_ 
+#endif // _FSSTRING_H_
