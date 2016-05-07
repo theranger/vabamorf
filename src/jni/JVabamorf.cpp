@@ -22,6 +22,6 @@ JNIEXPORT void JNICALL Java_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring 
 
 }
 
-JNIEXPORT void JNICALL Java_JVabamorf_getModuleName(JNIEnv *env, jobject obj) {
-	printf("Vabamorf JNI bridge\n");
+JNIEXPORT jstring JNICALL Java_JVabamorf_getModuleName(JNIEnv *env, jobject obj) {
+	return (*env).NewStringUTF("Vabamorf JNI bridge");
 }
