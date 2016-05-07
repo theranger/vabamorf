@@ -16,8 +16,10 @@ JNIEXPORT void JNICALL Java_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring 
 		env->ReleaseStringUTFChars(lingFile, nLingFile);
 	}
 	catch (CLinguisticException &ex) {
-		if (ex.m_lMajor == CLinguisticException::MAINDICT && ex.m_lMinor == CLinguisticException::UNDEFINED)
+		if (ex.m_lMajor == CLinguisticException::MAINDICT && ex.m_lMinor == CLinguisticException::UNDEFINED) {
 			JNIException::LinguisticException(env, "File %s not found", nLingFile);
+			return;
+		}
 
 		JNIException::LinguisticException(env, "Unknown error: file=%s, major=%ld, minor=%ld", nLingFile, ex.m_lMajor, ex.m_lMinor);
 		return;
