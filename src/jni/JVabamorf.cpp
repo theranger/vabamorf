@@ -4,10 +4,10 @@
 #include "JNIException.h"
 
 JNIEXPORT void JNICALL Java_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring corpus, jstring lingFile) {
+	const char *nLingFile = env->GetStringUTFChars(lingFile, NULL);
+
 	try {
 		CLinguistic linguistic;
-
-		const char *nLingFile = env->GetStringUTFChars(lingFile, NULL);
 		linguistic.Open(nLingFile);
 
 		printf("Analyzing input data\n");
@@ -16,7 +16,10 @@ JNIEXPORT void JNICALL Java_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring 
 		env->ReleaseStringUTFChars(lingFile, nLingFile);
 	}
 	catch (CLinguisticException &ex) {
-		JNIException::LinguisticException(env, ex.GetText());
+		if (ex.m_lMajor == CLinguisticException::MAINDICT && ex.m_lMinor == CLinguisticException::UNDEFINED)
+			JNIException::LinguisticException(env, "File %s not found", nLingFile);
+
+		JNIException::LinguisticException(env, "Unknown error: file=%s, major=%ld, minor=%ld", nLingFile, ex.m_lMajor, ex.m_lMinor);
 		return;
 	}
 
