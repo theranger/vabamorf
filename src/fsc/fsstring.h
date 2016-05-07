@@ -467,6 +467,11 @@ public:
 		Release();
 	}
 
+	const CHARTYPE *GetString() const
+	{
+		return m_pszStr;
+	}
+
 /**
 * Returns the length of the string in characters.
 * @return Length in characters.
