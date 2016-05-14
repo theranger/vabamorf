@@ -1640,9 +1640,9 @@ public:
     {
         if ((tyyp & progressProtsent) == progressProtsent)
         {
-            return in != NULL && failiSuurus >= 0L && counter >= 0L;
+            return in != NULL && failiSuurus >= 0L;
         }
-        return failiSuurus == 0L && counter >= 0L;
+        return failiSuurus == 0L;
     }
 private:
 
