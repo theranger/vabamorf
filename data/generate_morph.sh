@@ -111,7 +111,7 @@ function generate_morph {
 	# 2. read sortida ja korduvad (kui neid oli) eemaldada,
 	# 3. et -ke, -kene järelliitel on kõik muu sama, ainult a.nim. on erinev,
 	#    siis viska -kene muud tüved minema (jäta ainult -kene ise);
-	#    gawki skript kasutab teadmist, et:
+	#    awki skript kasutab teadmist, et:
 	#       - ainult -kese ja -kes lõpulised saavadki siin failis korduda (pole tarvis kontrollidagi)
 	#       - samasugused peavad olema sufiks ise, tema liitumisinfot kirjeldav string, tema sõnaliik ja tüve number (1 või 2 siin failis)
 	#       - seda olulist infot eristab muust esimene koma
@@ -144,10 +144,10 @@ function generate_morph {
 	cat suf.tmm \
 	| iconv -f ucs-2le -t utf8 \
 	| sed 's/ \([^= ]*\)=/ \1 =/' \
-	| gawk '{l=length($2); for (i=1; i <=l; i++) printf("%s %s%s\n", $1, substr($2, i, 1), $3);}' \
+	| awk '{l=length($2); for (i=1; i <=l; i++) printf("%s %s%s\n", $1, substr($2, i, 1), $3);}' \
 	| LC_COLLATE=C sort \
-	| gawk -F, '{if (eel!=$1) print; eel=$1;}' \
-	| gawk '{if (eel==$1) printf(" %s", $2); else {if (NR>1) printf("\n"); printf("%s %s", $1, $2);} eel=$1;} END {printf("\n");}' \
+	| awk -F, '{if (eel!=$1) print; eel=$1;}' \
+	| awk '{if (eel==$1) printf(" %s", $2); else {if (NR>1) printf("\n"); printf("%s %s", $1, $2);} eel=$1;} END {printf("\n");}' \
 	| iconv -f utf8 -t ucs-2le \
 	> suf.ini || exit 1
 
@@ -163,10 +163,10 @@ function generate_morph {
 	cat *.tmm \
 	| iconv -f ucs-2le -t utf8 \
 	| sed 's/ \([^= ]*\)=/ \1 =/' \
-	| gawk '{l=length($2); for (i=1; i <=l; i++) printf("%s %s%s\n", $1, substr($2, i, 1), $3);}' \
+	| awk '{l=length($2); for (i=1; i <=l; i++) printf("%s %s%s\n", $1, substr($2, i, 1), $3);}' \
 	| LC_COLLATE=C sort | LC_COLLATE=C uniq \
 	\
-	| gawk '{if (eel==$1) printf(" %s", $2); else {if (NR>1) printf("\n"); printf("%s %s", $1, $2);} eel=$1;} END {printf("\n");}' \
+	| awk '{if (eel==$1) printf(" %s", $2); else {if (NR>1) printf("\n"); printf("%s %s", $1, $2);} eel=$1;} END {printf("\n");}' \
 	| iconv -f utf8 -t ucs-2le \
 	> aeesti.ini || exit 1
 
