@@ -125,7 +125,6 @@ class DCTMETASTRCT :
             }
         catch(...)
             {
-            Stop();
             throw;
             }
 
