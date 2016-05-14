@@ -3,7 +3,7 @@
 This is a free morphological analyzer for Estonian language.
 Software is created and originally published by [Filosoft](https://github.com/Filosoft/vabamorf).
 
-The goal was to produce a generic library under Linux environment that can be linked into other projects.
+The goal was to produce a generic library for Linux and OSX environments that can be linked into other projects.
 
 This fork from original build is therefore heavily refactored:
 
