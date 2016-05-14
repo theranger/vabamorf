@@ -595,7 +595,7 @@ bool ETMRFAS::GeneTLDetailne(
             tyvi_leksikonis.Replace(FSxSTR(" "), FSxSTR("="), 1);
 	if (cXXfirst(&tyvi_leksikonis, &slTabIdx)!=ALL_RIGHT)
 	    {
-	    return NULL;
+	    return false;
 	    }
         sliike = sonaliik[slTabIdx]->GetLength();
         // peab tsükeldama ja sõnaliike ja tab_idx kontrollima,
