@@ -43,7 +43,6 @@ class CLOEND
             }
         catch(...)
             {
-            Stop();
             throw;
             }
 
