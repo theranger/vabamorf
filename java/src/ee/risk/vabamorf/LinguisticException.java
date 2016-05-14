@@ -1,3 +1,5 @@
+package ee.risk.vabamorf;
+
 /**
  * Initially created by ranger on 17.04.16 for jVabamorf project.
  */

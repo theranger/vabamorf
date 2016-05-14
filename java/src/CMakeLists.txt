@@ -17,14 +17,17 @@ include(UseJava)
 set(MODULE_NAME JVabamorf)
 
 set(SOURCE_FILES
-		JVabamorf.java
-		LinguisticException.java
+		ee/risk/vabamorf/JVabamorf.java
+		ee/risk/vabamorf/LinguisticException.java
+		ee/risk/vabamorf/model/Sentence.java
+		ee/risk/vabamorf/model/MorphInfo.java
+		ee/risk/vabamorf/model/Word.java
 		)
 
 set(CLASS_NAMES
-		JVabamorf
+		ee.risk.vabamorf.JVabamorf
 		)
 
 add_jar(${MODULE_NAME} ${SOURCE_FILES})
 get_target_property(TARGET_CLASS_DIR ${MODULE_NAME} CLASSDIR)
-Create_Javah(TARGET ${MODULE_NAME}-headers CLASSES ${CLASS_NAMES} CLASSPATH ${MODULE_NAME} OUTPUT_DIR ${PROJECT_BINARY_DIR})
+Create_Javah(TARGET ${MODULE_NAME}-headers CLASSES ${CLASS_NAMES} CLASSPATH ${MODULE_NAME} OUTPUT_NAME ${PROJECT_BINARY_DIR}/${MODULE_NAME}.h)
