@@ -26,7 +26,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
 
 #include "../../etana/f-info.h"
 #include "../../etana/mrflags.h"

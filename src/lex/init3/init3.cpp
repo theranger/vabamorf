@@ -28,7 +28,6 @@ const char *syNTaks =
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <malloc.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <errno.h>  // 20.01.97 tv
