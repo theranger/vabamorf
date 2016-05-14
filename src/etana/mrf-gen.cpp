@@ -800,14 +800,15 @@ bool ETMRFAS::GeneSTV(
     for(i=0; i < nSonaLiiki; i++)  // vt sufiksi homonüüme (s.h. lik ja l<ik on homonüümid)
         {
         sl1 = (*sonaLiigid)[i];
-        if ( sl->Find(sl1) == -1) // see sõnaliik pole siin lubatud
+        if ( sl->Find(sl1) == -1) { // see sõnaliik pole siin lubatud
             if (adhocnu == 1); // ... aga teatud juhtudel ikkagi võiks
-            else if (sl->Find((FSxCHAR)'A') != -1 &&      // tahetakse A, aga sufiks on leksikonis S
-                    (tmpSuf1 == FSxSTR("tu") ||
-                    tmpSuf1.Right(2) == FSxSTR("ke") ||
-                    tmpSuf1.Right(4) == FSxSTR("kene"))); // ... aga teatud juhtudel ikkagi võiks
+            else if (sl->Find((FSxCHAR) 'A') != -1 &&      // tahetakse A, aga sufiks on leksikonis S
+                     (tmpSuf1 == FSxSTR("tu") ||
+                      tmpSuf1.Right(2) == FSxSTR("ke") ||
+                      tmpSuf1.Right(4) == FSxSTR("kene"))); // ... aga teatud juhtudel ikkagi võiks
             else
                 continue;
+        }
         // vaja kontrollida, kas on ikka vajaliku algvormi tüvi
         gTyviUus = tmpSuf1;
         if(OtsiTyvi(&(sufix[sufNr].suftyinf[i].idx),
