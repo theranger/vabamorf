@@ -16,18 +16,18 @@
 
 #if defined( FSCHAR_UNICODE )   // kasutame UNICODE kooditabelit
 
-#define APOSTROOF (FSWCHAR)0x2019 // ülaindeks 9  
+#define APOSTROOF (FSWCHAR)0x2019 // ülaindeks 9
 
-#define S_O_TILDE (FSWCHAR)0x00D5 
-#define V_O_TILDE (FSWCHAR)0x00F5 
-#define V_O_UML   (FSWCHAR)0x00F6    
+#define S_O_TILDE (FSWCHAR)0x00D5
+#define V_O_TILDE (FSWCHAR)0x00F5
+#define V_O_UML   (FSWCHAR)0x00F6
 
-#define V_SH      (FSWCHAR)0x0161 
+#define V_SH      (FSWCHAR)0x0161
 /* 1/4 */
-#define S_SH      (FSWCHAR)0x0160 
-#define V_ZH      (FSWCHAR)0x017E 
+#define S_SH      (FSWCHAR)0x0160
+#define V_ZH      (FSWCHAR)0x017E
 /* 1/2 */
-#define S_ZH      (FSWCHAR)0x017D 
+#define S_ZH      (FSWCHAR)0x017D
 
 #else
 #error Defineeri FSCHAR_UNICODE
@@ -35,13 +35,13 @@
 
 int FSStrCmpW0(const FSWCHAR *s1, const FSWCHAR *s2);
 
-/** Lõikab sisendstringist XML-märgendid välja ja teeb olemid vastavateks 
+/** Lõikab sisendstringist XML-märgendid välja ja teeb olemid vastavateks
     * märkideks
     *
     * @param[in,out] CFSWString& @wStr
     * sisendstring string
     * @param[in] bool @vajaPuhastada
-    * Vaikimisi vajaPuhastada==true. Kui vajaPuhastada==true kustutame olemid 
+    * Vaikimisi vajaPuhastada==true. Kui vajaPuhastada==true kustutame olemid
     * ja märgendid, muidu jääb muutmata.
     */
 template <class S_TYYP, class C_TYYP>
@@ -92,11 +92,11 @@ void PuhastaXMList(S_TYYP& xStr, bool vajaPuhastada=true)
             {
                 int j=xStr.Find((C_TYYP)';', i+1); // otsime üles olemi lõpu
                 if(j<=i) // märgendit lõpetav märk ';' puudu
-                    throw(VEAD(ERR_X_TYKK, ERR_MINGIJAMA, __FILE__,__LINE__, 
+                    throw(VEAD(ERR_X_TYKK, ERR_MINGIJAMA, __FILE__,__LINE__,
                             NULL, "Vigane &#kood; olem", (const C_TYYP*)xStr));
                 unsigned int kood=0;
                 for(int k=i+2; k<j; k++)
-                    kood = 10*kood + (unsigned int)(xStr[k]) - 
+                    kood = 10*kood + (unsigned int)(xStr[k]) -
                                                 (unsigned int)(C_TYYP)'0';
                 xStr[i++]=(C_TYYP)kood;
                 xStr.Delete(i, j-i+1); // olem koodiga asendatud
@@ -105,7 +105,7 @@ void PuhastaXMList(S_TYYP& xStr, bool vajaPuhastada=true)
             else
                 // lubatud ainult 5 XMLis eeldefineeritud olemit
                 // ja olemeid kujul &#kood;
-                throw(VEAD(ERR_X_TYKK, ERR_MINGIJAMA, __FILE__,__LINE__, 
+                throw(VEAD(ERR_X_TYKK, ERR_MINGIJAMA, __FILE__,__LINE__,
                             NULL, "Vigane olem", (const C_TYYP*)xStr));
             break;
         default:
@@ -217,7 +217,7 @@ public:
     inline static bool OnSuur(const CFSWString* wStr, const int idx)
     {
         assert(idx >= 0 && idx < wStr->GetLength());
-        return TaheHulgad::OnTaht(wStr, idx) && 
+        return TaheHulgad::OnTaht(wStr, idx) &&
                                 ((*wStr)[idx] == FSToUpper((*wStr)[idx]));
     }
 
@@ -225,7 +225,7 @@ public:
     inline static bool OnPisi(const CFSWString* wStr, const int idx)
     {
         assert(idx >= 0 && idx < wStr->GetLength());
-        return TaheHulgad::OnTaht(wStr, idx) && 
+        return TaheHulgad::OnTaht(wStr, idx) &&
                                     ((*wStr)[idx] == FSToLower((*wStr)[idx]));
     }
 
@@ -240,7 +240,7 @@ public:
     }
 
     /** Kas kõik sümbol stringis kuuluvad etteantud loendisse */
-    inline static bool PoleMuudKui(const CFSWString* wStr, 
+    inline static bool PoleMuudKui(const CFSWString* wStr,
                                                     const CFSWString* loend)
     {
         for (int i = (int) wStr->GetLength() - 1; i >= 0; i--)
@@ -353,15 +353,15 @@ public:
             *wStr = uus;
     }
 
-    /** 
-     * 
-     * @param[out] c 
-     * <ul><li> Kui @a wStr[pos] alustab olemit, siis olemile vastav UNICODE'i 
-     * sümbol. 
-     *     <li> Kui wStr[pos] alustab märgendit siis 0. 
+    /**
+     *
+     * @param[out] c
+     * <ul><li> Kui @a wStr[pos] alustab olemit, siis olemile vastav UNICODE'i
+     * sümbol.
+     *     <li> Kui wStr[pos] alustab märgendit siis 0.
      *     <li> Kui polnud olem ega märgend, siis wStr[pos] muutmatul kujul.
      * </ul>
-     * @param[out] pikkus 
+     * @param[out] pikkus
      * <ul><li> Kui @a wStr[pos] alustab olemit, siis vastava olemi pikkus.
      *     <li> Kui @a wStr[pos] alustab märgendit, siis vastava märgendi pikkus.
      *     <li> Kui polnud olem ega märgend siis 1.
@@ -371,7 +371,7 @@ public:
      * @param[in] vajaPuhastada On @a true, kui on vaja teisendada olemeid ja leida märgendeid. Muidu @a false.
      * @return On @a false kui @a wStr[pos]==EndOfString, Muidu @a true,
      */
-    inline static bool Xml2wchar(FSWCHAR& c, int& pikkus, CFSWString& wStr, 
+    inline static bool Xml2wchar(FSWCHAR& c, int& pikkus, CFSWString& wStr,
                                         int pos, bool vajaPuhastada = true)
     {
         if (pos >= wStr.GetLength())
@@ -422,7 +422,7 @@ public:
             {
                 int j = wStr.Find((FSWCHAR) ';', pos + 1); // otsime üles olemi lõpu
                 if (j <= pos) // märgendit lõpetav märk ';' puudu
-                    throw (VEAD(ERR_X_TYKK, ERR_MINGIJAMA, __FILE__, __LINE__, 
+                    throw (VEAD(ERR_X_TYKK, ERR_MINGIJAMA, __FILE__, __LINE__,
                                 "Vigane &#kood; olem"));
                 unsigned int kood = 0;
                 for (int k = pos + 2; k < j; k++)
@@ -891,7 +891,7 @@ public:
         assert(ClassInvariant());
 
         if (key == NULL)
-            return NULL;
+            return 0;
         int i;
         for (i = 0; i < len; i++)
         {

@@ -424,7 +424,7 @@ LYLI *ET3::Flush(void)
 bool ET3::Flush(LYLI& lyli)
 {
     if (lauses == true)
-        return NULL;
+        return false;
     if (jubaYhestatud == false)
     {
         Yhesta();
@@ -433,7 +433,7 @@ bool ET3::Flush(LYLI& lyli)
     if (ahelMyh.idxLast <= 0)
     {
         jubaYhestatud = false;
-        return NULL;
+        return false;
     }
     VIIDAKEST<LYLI_UTF8> p(ahelMyh.LyliPtrOut(0));
     if (p.ptr == NULL)
