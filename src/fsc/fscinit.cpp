@@ -63,13 +63,18 @@ public:
 		FSUNUSED(ipCharSize);
 		FSFree(pData);
 #else
+#pragma clang diagnostic ignored "-Wundefined-bool-conversion"
 		INTPTR ipByteSize=pData->m_ipBufSize*ipCharSize;
-		__FSSTRINGFREE(32)
-		else __FSSTRINGFREE(64)
-		else __FSSTRINGFREE(128)
-		else __FSSTRINGFREE(256)
-		else __FSSTRINGFREE(512)
-		else FSFree(pData);
+		if (this) {
+			__FSSTRINGFREE(32)
+			else __FSSTRINGFREE(64)
+			else __FSSTRINGFREE(128)
+			else __FSSTRINGFREE(256)
+			else __FSSTRINGFREE(512)
+			else FSFree(pData);
+		} else {
+			FSFree(pData);
+		}
 #endif
 	}
 
