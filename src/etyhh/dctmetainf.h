@@ -23,14 +23,14 @@ enum DCTELEMID
 /** Klass sõnastikulementide massiivi elemendi esitamiseks */
 class DCTMETASTRCTELEM
     {
-    public:        
+    public:
         /** Annab selle sõnastikuelemendiga seotud info alguspositsiooni failis */
         long algusPos;
-        
-        /** Sõnastikuelemendi tüüp/ID */
-        DCTELEMID dctElemId; 
 
-        DCTMETASTRCTELEM(void) 
+        /** Sõnastikuelemendi tüüp/ID */
+        DCTELEMID dctElemId;
+
+        DCTMETASTRCTELEM(void)
             {
             InitClassVariables();
             assert(EmptyClassInvariant());
@@ -55,8 +55,8 @@ class DCTMETASTRCTELEM
             return Compare(&(rec->dctElemId), sortOrder);
             }
 
-        /** Tekitame etteantud tüüpi tühja FILEINFO 
-         * 
+        /** Tekitame etteantud tüüpi tühja FILEINFO
+         *
          * @param id -- seda tüüpi tühi sõnastikuelement
          * @param pos -- algab sõnastikus sellest positsioonist
          */
@@ -73,7 +73,7 @@ class DCTMETASTRCTELEM
 
         bool EmptyClassInvariant(void)
             {
-            return algusPos== -1L;            
+            return algusPos== -1L;
             }
    private:
         void InitClassVariables(void)
@@ -87,18 +87,18 @@ class DCTMETASTRCTELEM
         /** Omistamisoperaator on illegaalne */
         DCTMETASTRCTELEM& operator=(const DCTMETASTRCTELEM&) { assert(false); return *this;}
     };
-    
+
 /** Klass sõnastikuelementide massiivi esitamiseks
- * 
+ *
  * Sisaldab sõnastiku tegemise aega ja sõnastikuelementide loetelu
  * (DCTMETASTRCTELEM tüüpi kirjete massiivi mis on otsitav DCTELEMID järgi).
- * 
+ *
  * Klassimalli parameetrid:
  * <ul><li> DCTMETASTRCTELEM --
  *     <li> DCTELEMID --
  * </ul>
  */
-class DCTMETASTRCT : 
+class DCTMETASTRCT :
     public TMPLPTRARRAYBIN<DCTMETASTRCTELEM, DCTELEMID>,
     public CPFSFile
     {
@@ -114,7 +114,7 @@ class DCTMETASTRCT :
             }
 
         /**
-         * 
+         *
          * @param dctFileName -- sõnastikufaili nimi
          */
         DCTMETASTRCT(const CFSFileName& dctFileName)
@@ -130,7 +130,7 @@ class DCTMETASTRCT :
             }
 
         /**
-         * 
+         *
          * @param dctFileName -- sõnastikufaili nimi
          */
         void Start(const CFSFileName& dctFileName)
@@ -138,15 +138,15 @@ class DCTMETASTRCT :
             char timeStampString[timeStampLen+1]; // +1 et EOS ära mahuks
             TMPLPTRARRAY<DCTMETASTRCTELEM>::Start(1,1);
             if(Open(dctFileName, FSTSTR("rb"))==false)
-                { 
+                {
                 throw VEAD(ERR_X_TYKK,ERR_OPN,__FILE__,__LINE__," ",
-                        "Ei suutnud faili avada lugemiseks", (const FSTCHAR*)dctFileName); 
+                        "Ei suutnud faili avada lugemiseks", (const FSTCHAR*)dctFileName);
                 }
-            if(CPFSFile::Seek(-(timeStampLen), SEEK_END)==false || 
+            if(CPFSFile::Seek(-(timeStampLen), SEEK_END)==false ||
                                 ReadBuffer(timeStampString,timeStampLen)==false)
                 {
                 throw VEAD(ERR_X_TYKK,ERR_ROTTEN,__FILE__,__LINE__," ",
-                        "Andmefail riknenud", (const FSTCHAR*)dctFileName); 
+                        "Andmefail riknenud", (const FSTCHAR*)dctFileName);
                 }
             timeStampString[timeStampLen]='\0';
             timeStamp=timeStampString;
@@ -155,19 +155,19 @@ class DCTMETASTRCT :
                timeStamp[18]!='\0')
                 {
                 throw VEAD(ERR_X_TYKK,ERR_ROTTEN,__FILE__,__LINE__," ",
-                        "Andmefail riknenud", (const FSTCHAR*)dctFileName); 
+                        "Andmefail riknenud", (const FSTCHAR*)dctFileName);
                 }
             if(CPFSFile::Seek(-(timeStampLen+1), SEEK_END)==false)
                 {
                 throw VEAD(ERR_X_TYKK,ERR_ROTTEN,__FILE__,__LINE__," ",
-                        "Andmefail riknenud", (const FSTCHAR*)dctFileName); 
+                        "Andmefail riknenud", (const FSTCHAR*)dctFileName);
                 }
             int n;
             ReadUnsigned<UB1,int>(&n);
             if(CPFSFile::Seek(-(timeStampLen+1+n*5), SEEK_END)==false)
                 {
                 throw VEAD(ERR_X_TYKK,ERR_ROTTEN,__FILE__,__LINE__," ",
-                        "Andmefail riknenud", (const FSTCHAR*)dctFileName); 
+                        "Andmefail riknenud", (const FSTCHAR*)dctFileName);
                 }
             DCTMETASTRCTELEM* ptr;
             for(int i=0; i<n; i++)
@@ -181,7 +181,7 @@ class DCTMETASTRCT :
             }
 
         /** Tekitame koha ettantud tüüpi sõnastikuelemendile
-         * 
+         *
          * @param id -- seda tüüpi FILEINFOLE tekitame koha
          * @param pos
          * @return Viit loodud sünastikuelemendile
@@ -194,21 +194,21 @@ class DCTMETASTRCT :
             }
 
         /** Tekitame uue sõnastikufaili ja initsialiseerime klassi
-         * 
+         *
          * @param dctFileName -- sõnastikufaili nimi
          */
         void Creat(const CFSFileName& dctFileName)
             {
-            if(Open(dctFileName, FSTSTR("wb+"))==false) 
+            if(Open(dctFileName, FSTSTR("wb+"))==false)
                 {
                 throw VEAD(ERR_X_TYKK,ERR_OPN,__FILE__,__LINE__," ",
-                        "Ei suuda tekitada andmefaili", (const FSTCHAR*)dctFileName); 
+                        "Ei suuda tekitada andmefaili", (const FSTCHAR*)dctFileName);
                 }
             TMPLPTRARRAYBIN<DCTMETASTRCTELEM, DCTELEMID>::Start(1,1);
             }
 
         /** Leiab sõnastikuelmendi alguspositsiooni sõnastikufailis
-         * 
+         *
          * @param id -- sõnastikuelemendi tüüp
          * @return Vastava sõnastikuelemendi alguspositsioon sõnastikufailis
          * Erind, kui sellist tüüpi sõnastikuelementi polnud
@@ -233,16 +233,16 @@ class DCTMETASTRCT :
             if(CPFSFile::Seek(pos)==false)
                  throw VEAD( ERR_X_TYKK, ERR_ROTTEN, __FILE__, __LINE__);
             }
-        
-        /** METAINFO sõnastikufailile sappa 
-         * 
-         * Sõnastikule sappa (uuesti) kirjutame ainult METAINFO, FILEINFOd 
+
+        /** METAINFO sõnastikufailile sappa
+         *
+         * Sõnastikule sappa (uuesti) kirjutame ainult METAINFO, FILEINFOd
          * jäävad endistele kohtadele failis.
          * Metainfo sõnastikufaili sabas on kujul:
          * <ul><li> 1bait  (1) FILEINFO tüüp, ehk siis DCTELEMID
          *     <li> 4baiti (1) FILEINFO alguspositsioon failis
          *     <li> 1bait  n ehk eelneva massiivi pikkus
-         *     <li> 1bait  reavahetuse kood '\\012' 
+         *     <li> 1bait  reavahetuse kood '\\012'
          *     <li> 17baiti AA.KK.KP TT:MM:SS ehk aasta.kuu.päev tunnid.minutid,
          * sõnastiku kettale kirjutamise aeg
          */
@@ -290,7 +290,7 @@ class DCTMETASTRCT :
                 timeStamp+='0';
             STRSOUP::UnsignedNum2Str<int, CFSAString, char, 10>(nr, timeStamp);
             assert(timeStamp.GetLength()==3);
-            
+
             timeStamp += '.';                       //[3]punkt
             if((nr=now->tm_mon+1)<10)               //[4-5]kuu
                 timeStamp+='0';
@@ -321,7 +321,7 @@ class DCTMETASTRCT :
             STRSOUP::UnsignedNum2Str<int, CFSAString, char, 10>(nr, timeStamp);
             assert(timeStamp.GetLength()==18);
                                                     //[18]stringilõputunnus
-            
+
 //timeStamp = "\n14.11.27 16:18:12"; //DB
 
             assert(timeStamp.GetLength()==18 && 18==timeStampLen);
@@ -343,7 +343,7 @@ class DCTMETASTRCT :
                 timeStamp[ 9]!=' ' ||timeStamp[12]!=':'||timeStamp[15]!=':'||
                 timeStamp[18]!='\0'||18!=timeStampLen)
                 return false;
-            return 
+            return
                 TMPLPTRARRAYBIN<DCTMETASTRCTELEM, DCTELEMID>::ClassInvariant();
             }
 
@@ -353,7 +353,7 @@ class DCTMETASTRCT :
             return timeStamp[0]=='\0' &&
                 TMPLPTRARRAYBIN<DCTMETASTRCTELEM, DCTELEMID>::EmptyClassInvariant();
             }
-        
+
         /** Sõnastiku tegemise aeg */
         CFSAString timeStamp;
 
@@ -368,11 +368,11 @@ class DCTMETASTRCT :
         DCTMETASTRCT(const DCTMETASTRCT&) { assert(false); }
 
         /** Omistamisoperaator on illegaalne */
-        DCTMETASTRCT& operator=(const DCTMETASTRCT&) { assert(false); return *this;}    
+        DCTMETASTRCT& operator=(const DCTMETASTRCT&) { assert(false); return *this;}
     };
 
 /** Klass 8bitiste cooperdatud stringide loendiga seatud info paiknemise esitamiseks
- * 
+ *
  * Kahendtabeli ja Cooperi meetodil pakkimise
  * kombinatsioon
  */
@@ -383,16 +383,16 @@ class DCTCOOPACKFILEINF
         //    {
         //    suurusKettal = 4+4+2 ///< Andmestruktuuri suurus failis
         //    };
-        
+
         /** Sellest positsioonist algab kahendtabel */
         long posKahendTabeliAlgus;
-        
+
         /** Sellest posotsioonist algavad kokkucooperdatud blokid */
         long posCooperdatudBlokkideAlgus;
-        
+
         /** Coooperdatud bloki suurus */
         int  cooperdatudBlokiSuurus;
-        
+
         /** Kahendtabelis olev sõna jrk nr kettal niimitme baidine */
         int  nBaidineIdx;
 
@@ -424,7 +424,7 @@ class DCTCOOPACKFILEINF
             {
             if(dctElemId!=DCTELEMID_T3LEXCOOP)
                 {
-                throw VEAD(ERR_X_TYKK,ERR_ARGVAL,__FILE__,__LINE__,"Vigane sõnastikufail"); 
+                throw VEAD(ERR_X_TYKK,ERR_ARGVAL,__FILE__,__LINE__,"Vigane sõnastikufail");
                 }
             dct.Seek(dctElemId);
             if(dct.ReadUnsigned<UB4, long>(&posKahendTabeliAlgus       )==true &&
@@ -435,11 +435,11 @@ class DCTCOOPACKFILEINF
                 {
                 return; //ok
                 }
-            throw VEAD(ERR_X_TYKK,ERR_ROTTEN,__FILE__,__LINE__,"Vigane sõnastikufail"); 
+            throw VEAD(ERR_X_TYKK,ERR_ROTTEN,__FILE__,__LINE__,"Vigane sõnastikufail");
             }
 
         /** Sõnastikufaili FILEINFO kirjutamiseks
-         * 
+         *
          * FILEINFO kirjutatakse faili alates jooksvast positsioonist
          * @param dct -- pakitud sõnastikufail
          * @return FILEINFO algusnihe sõnastikufailis
@@ -459,14 +459,14 @@ class DCTCOOPACKFILEINF
 #endif
                 return pos;
                 }
-            throw VEAD(ERR_X_TYKK,ERR_WRITE,__FILE__,__LINE__,"$Revision: 1134 $"); 
+            throw VEAD(ERR_X_TYKK,ERR_WRITE,__FILE__,__LINE__,"$Revision: 1134 $");
             }
 
         /** "Starditud" klassi invaraint */
         bool ClassInvariant(void)
             {
-            return 
-                posKahendTabeliAlgus!= -1L && 
+            return
+                posKahendTabeliAlgus!= -1L &&
                 posCooperdatudBlokkideAlgus!= -1L &&
                 cooperdatudBlokiSuurus!= -1 &&
                 nBaidineIdx!= -1 &&
@@ -476,8 +476,8 @@ class DCTCOOPACKFILEINF
         /** Argumentideta konstruktori järgne klassi invariant */
         bool EmptyClassInvariant(void)
             {
-            return 
-                posKahendTabeliAlgus== -1L && 
+            return
+                posKahendTabeliAlgus== -1L &&
                 posCooperdatudBlokkideAlgus== -1L &&
                 cooperdatudBlokiSuurus== -1 &&
                 nBaidineIdx== -1 &&
