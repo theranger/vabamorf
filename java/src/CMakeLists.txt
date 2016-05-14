@@ -1,6 +1,10 @@
 
 #If JAVA_HOME is not set, JNI module will not be properly initialized
-set(ENV{JAVA_HOME} "/usr/lib/jvm/jdk-8-oracle-x64")
+if(APPLE)
+	set(ENV{JAVA_HOME} "/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home")
+else(APPLE)
+	set(ENV{JAVA_HOME} "/usr/lib/jvm/jdk-8-oracle-x64")
+endif(APPLE)
 
 find_package(JNI)
 if(NOT JNI_FOUND)
