@@ -46,7 +46,7 @@ void *operator new[](size_t nSize)
 	return FSAlloc(nSize);
 }
 
-void operator delete(void* pBuf)
+void operator delete(void* pBuf) _NOEXCEPT
 {
 	FSFree(pBuf);
 }
