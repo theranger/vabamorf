@@ -1,6 +1,7 @@
 #if !defined _FSSTREAM_H_
 #define _FSSTREAM_H_
 
+#include <cmath>
 #include "fsexception.h"
 #include "fsstring.h"
 
@@ -242,7 +243,7 @@ public:
 				}
 			}
 		}
-		
+
 		int iExp;
 		ReadSInt(&iExp);
 		*pNumber=ldexp(*pNumber, iExp);
@@ -350,7 +351,7 @@ public:
 	{
 		BYTE byBuf=(Number<0 ? 1 : 0);
 		int iBit=1;
-		Number=fabs(Number);
+		Number=std::abs(Number);
 
 		int iExp;
 		Number=frexp(Number, &iExp);
