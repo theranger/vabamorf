@@ -30,7 +30,7 @@ int cTYVEINF::cXXfirst( //==0:leidis;==POLE_SEDA,POLE_YLDSE:polnud
 		// Oli kahendtabelis.
 		FindBt(tab_idx, index);
         ret=0;
-		} 
+		}
 	else
 		{
 		// Polnud kahendtabelis.
@@ -40,8 +40,8 @@ int cTYVEINF::cXXfirst( //==0:leidis;==POLE_SEDA,POLE_YLDSE:polnud
 		{
         int nS6naLiiki=sonaliik[pre.v_tabidx()]->GetLength();
         //
-        //selle koha peal anname tyveinfo tagasi, 
-        //seda peab sutsu teisendama! 
+        //selle koha peal anname tyveinfo tagasi,
+        //seda peab sutsu teisendama!
         //
         ptr = (UB1 *)xptr;
         //
@@ -52,7 +52,7 @@ int cTYVEINF::cXXfirst( //==0:leidis;==POLE_SEDA,POLE_YLDSE:polnud
         for(i=0; i < nS6naLiiki; i++)
             {
             int tmp;
-			dptr[i].piiriKr6nksud = pre.v_piir(); // TV 990312            
+			dptr[i].piiriKr6nksud = pre.v_piir(); // TV 990312
             tmp = (((int)(ptr[0]))&0xFF) | ( (((int)(ptr[1]))&0xFF)<<8);
             dptr[i].idx.blk_idx = (_uint8)((tmp   )& 0x3F );
             dptr[i].idx.tab_idx = (_int16)((tmp>>6)& 0x3FF);
@@ -67,13 +67,13 @@ int cTYVEINF::cXXfirst( //==0:leidis;==POLE_SEDA,POLE_YLDSE:polnud
                 }
             ptr += sizeof(_uint8)+sizeof(_uint8)+nKr6nksuBaiti;
             MKT1c *rec;
-            if((rec=tyveMuutused.Get(dptr[i].idx.tab_idx,dptr[i].idx.blk_idx))==NULL) 
+            if((rec=tyveMuutused.Get(dptr[i].idx.tab_idx,dptr[i].idx.blk_idx))==NULL)
                 {
 //printf("%s:%d -- SUUR JAMA\n", __FILE__,__LINE__);
-                // vale l�pu # grupis 
+                // vale l�pu # grupis
                 throw(VEAD(ERR_MG_MOOTOR,ERR_ROTTEN,__FILE__,__LINE__, "$Revision: 557 $"));
                 }
-            dptr[i].lg_nr = rec->lgNr; 
+            dptr[i].lg_nr = rec->lgNr;
             }
         }
 //printf("%s:%d -- %5d\n", __FILE__,__LINE__,ret);
@@ -85,10 +85,10 @@ void cTYVEINF::NextPre(void)
 	{
 	//pptr += dSizeOfPrefiks+pre.v_erinevaid()*sizeof(FSxCHAR)+
 	//    dSizeOfLg2(sonaliik[pre.v_tabidx()]->GetLength(),
-    //    nKr6nksuBaiti); // selle arvut!!!! 
+    //    nKr6nksuBaiti); // selle arvut!!!!
 	pptr += dSizeOfPrefiks+pre.v_erinevaid()*dctsizeofFSxCHAR+
 	    dSizeOfLg2(sonaliik[pre.v_tabidx()]->GetLength(),
-        nKr6nksuBaiti); // selle arvut!!!! 
+        nKr6nksuBaiti); // selle arvut!!!!
 	pre.BytesToPrefiks(pptr);
 	xptr = pptr + dSizeOfPrefiks; // viit jooksvale tyvejupile
 	stem_no++;
@@ -96,10 +96,10 @@ void cTYVEINF::NextPre(void)
 
 //private
 void cTYVEINF::FindBt( // ==0:leidis; ==1:polnud; ==-1:jama
-	const int tab_idx, // 2ndtabeli index = k@shi bloki nr 
+	const int tab_idx, // 2ndtabeli index = k@shi bloki nr
 	int *index)
 	{
-	register int res;
+	int res;
 
 	if((res = CacheRead(&dctFile, tab_idx)) != 0)
 		{
@@ -155,13 +155,13 @@ int cTYVEINF::FindDb( // {POLE_YLDSE, POLE_SEDA, s�naliikide-tabeli-idx}
 	const FSxCHAR *stem,    // otsitav tyvi
 	const int   slen)       // t�ve  pikkus
 	{
-	register int erinevaid,
+	int erinevaid,
 			     res;
 
 	while((res=NextStem())==V0RDLE)
 		{
         erinevaid=pre.v_erinevaid();
-		while((int)kcnt < slen && erinevaid > 0 && 
+		while((int)kcnt < slen && erinevaid > 0 &&
             STRSOUP::Kahest(xptr)==stem[kcnt])
 			{
             xptr+=dctsizeofFSxCHAR;
@@ -199,12 +199,12 @@ int cTYVEINF::FindBlk(  // {POLE_YLDSE, POLE_SEDA, 0}: otsime blokist
     int find_diff(
         const FSxCHAR *s1, // 1mene string
         const int      l1, // 1mese stringi pikkus
-        const FSxCHAR *s2, // 2ne string 
+        const FSxCHAR *s2, // 2ne string
         const int      l2);// 2se stringi pikkus
 
-    register int res;
+    int res;
     const FSxCHAR *kahendtabelist;
-	if((res = CacheRead(&dctFile, tab_idx)) != 0) 
+	if((res = CacheRead(&dctFile, tab_idx)) != 0)
 		{
 		//return res; // viga -1 tegelikult
         throw(VEAD(ERR_MG_MOOTOR,ERR_ROTTEN,__FILE__,__LINE__, "$Revision: 557 $"));
@@ -219,7 +219,7 @@ int cTYVEINF::FindBlk(  // {POLE_YLDSE, POLE_SEDA, 0}: otsime blokist
 	if((*index = FindDb(stem, slen)) < 0)
 		{
 		return *index;  // {POLE_YLDSE, POLE_SEDA}
-		}	
+		}
     return 0;           // *index == s6naliikide tabeli index
 	}
 //-------------*/

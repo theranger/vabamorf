@@ -1,5 +1,5 @@
 
-// 2000.07.14 TV 
+// 2000.07.14 TV
 // 2002.03.20 TV klass �mberv��natud
 
 /*
@@ -82,12 +82,12 @@ int DCTRD::LopugruppSisaldabVormi( // 0==vajalik lopp-vorm l�pugrupis olemas; 
  * nt. kääri SV puhul sobivad=10 või 01, sõltuvalt muude komponentide poolt esitatavatest nõuetest
  * (kääri_terad või kääri=mine)
 */
-int MORF0::ssobivus( 
+int MORF0::ssobivus(
     TYVE_INF *grupid,  // sisend; lõpugrupid
     const FSxCHAR *sl, // sisend; lõpugrupi sõnaliigid (stringina))
     const int sl_pik,  // sisend; massiivi sl pikkus
     const char lopunr, // sisend; lubatav lõpp (õigemini jrk nr lõppude loendis)
-    const FSxCHAR *sonalk, // sisend; lubatavad sõnaliigid (stringina)) 
+    const FSxCHAR *sonalk, // sisend; lubatavad sõnaliigid (stringina))
     const int vorminr,  // sisend; lubatav vorm (õigemini jrk nr vormide loendis)
     char *sobivad,    // väljund; 0 ja 1 joru
     const int sobivatePikkus  // sisend; massiivi 'sobivad' pikkus
@@ -95,14 +95,14 @@ int MORF0::ssobivus(
     {
     if(sobivatePikkus<sl_pik)
         throw VEAD(ERR_MORFI_MOOTOR,ERR_MINGIJAMA,__FILE__,__LINE__,"$Revision: 855 $");
-    register int i;
+    int i;
     int j=0;
     int  k=0, llnr, ffnr, ok;
     unsigned l;
     FSxCHAR s;
     FSXSTRING csonalk;
     //FSXSTRING slsonalk;
-    
+
     csonalk = sonalk;
     //slsonalk = sl;
     memset(sobivad, 0, sobivatePikkus);
@@ -173,7 +173,7 @@ int MORF0::ssobivus(
 /*
  * kui s�naliik koos l�pugrupiga on sama, mis lubamatu liik oma l�pugrupiga, siis return(true); muidu return (false)
  */
-bool MORF0::on_paha_sl( TYVE_INF *grupid, const int lg_nr, const FSxCHAR *sl, 
+bool MORF0::on_paha_sl( TYVE_INF *grupid, const int lg_nr, const FSxCHAR *sl,
                     const FSxCHAR lubamatu_liik )
      {
      FSXSTRING slsonalk;
@@ -208,13 +208,13 @@ PRSL::PRSL(void)
     }
 
 typedef struct              // pref, suf, lp sobivuse kontrollimiseks
-    { 
+    {
     const FSxCHAR *tylp;
     const int l_pik;
     const char uus_sl;
     } PR_SL2;
 
-static  PR_SL2 usl2[4] = 
+static  PR_SL2 usl2[4] =
     {
     {FSxSTR("us"), 2, 'S'},
     {FSxSTR("use"), 3, 'S'},
@@ -244,8 +244,8 @@ int MORF0::sobib_p_t(KOMPONENT *pref, KOMPONENT *tyvi)
 		{
         if (tyvi->sl == FSxSTR("D"))
 		    {
-            if (TaheHulgad::OnLopus(&(tyvi->k_algus), FSxSTR("si")) && 
-                        !TaheHulgad::OnLopus(&(tyvi->k_algus), FSxSTR("kesi"))) 
+            if (TaheHulgad::OnLopus(&(tyvi->k_algus), FSxSTR("si")) &&
+                        !TaheHulgad::OnLopus(&(tyvi->k_algus), FSxSTR("kesi")))
 				{
 				if (on_liitsona(tyvi))
 					return (0); // poolomaviisi
@@ -310,19 +310,19 @@ int MORF0::sobib_p_t_s(KOMPONENT *pref, KOMPONENT *tyvi, KOMPONENT *suff)
     if (k)
         return 1;
     if (!k)
-        {  // ehk p_n_sl on 'V' ? 
-//      if ( strchr(p_n_sl, tyvi->sl[0]) ) // p_n_sl 'V' on erijuhtum 
+        {  // ehk p_n_sl on 'V' ?
+//      if ( strchr(p_n_sl, tyvi->sl[0]) ) // p_n_sl 'V' on erijuhtum
         if (p_n_sl.Find(tyvi->sl)!=-1)
             return 1;
         }
-    // ehk p_n_sl sobib kokku sufiksist tuleneva sonaliigiga? 
+    // ehk p_n_sl sobib kokku sufiksist tuleneva sonaliigiga?
     //for (j=0;  j < sonaliik[ssl].pikkus; j++)
     for (j=0;  j < sonaliik[ssl]->GetLength(); j++)
         {
         if (p_n_sl.Find( (*sonaliik[ssl])[j])!=-1)
             return 1;
         }
-    return 0;    
+    return 0;
     }
 
 //int MORF0::viletstyvi( FSXSTRING *ty )
@@ -335,14 +335,14 @@ int MORF0::viletsls( FSXSTRING *ty )
     return ( (dctLoend[4])[(FSxCHAR *)(const FSxCHAR *)(*ty)] ) >= 0 ? 1 : 0;
     }
 /*
-* return minimaalne tyvepikkus, mida on m�tet otsida 
+* return minimaalne tyvepikkus, mida on m�tet otsida
 */
 int MORF0::minipik(FSXSTRING *ty)
     {
     FSXSTRING ttt;
     int pik=2;
 
-    ttt = (const FSxCHAR *)(ty->Left(3));  
+    ttt = (const FSxCHAR *)(ty->Left(3));
     if ( ttt == FSxSTR("alu") || ttt == FSxSTR("ude") || ttt == FSxSTR("pan") )
 	    pik = 4;
     else
@@ -412,7 +412,7 @@ int MORF0::on_muutumatu(KOMPONENT *tyvi)
 	//llnr = (groups[lopp->lgr].gr_algus << 8) | groups[lopp->lgr].gr_lopp;
     llnr = KaksYheks(groups[lopp->lgr].gr_algus, groups[lopp->lgr].gr_lopp);
     ffnr = (unsigned char)(fgr[homo_form * llnr]);
-	if (!ffnr)                
+	if (!ffnr)
         return 1;
     return 0;
     }

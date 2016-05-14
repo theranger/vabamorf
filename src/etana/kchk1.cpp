@@ -16,20 +16,20 @@
 #include "mrf-mrf.h"
 
 int MORF0::kchk1(
-    VARIANTIDE_AHEL **variandid, 
-    FSXSTRING *word, 
-    int S6naPikkus, 
-    VARIANTIDE_AHEL **sobivad_variandid, 
+    VARIANTIDE_AHEL **variandid,
+    FSXSTRING *word,
+    int S6naPikkus,
+    VARIANTIDE_AHEL **sobivad_variandid,
     char *paha_koht,
     const int paha_koha_suurus)
     {
-    register int i, tyvepik;
+    int i, tyvepik;
     int  res;
     int  algp;
     FSXSTRING sona, end;
     signed char lnr;
     VARIANTIDE_AHEL **mille_taha, *variant, *sobiv_variant, **sobiva_taha, *tmp; //ok
-    CVARIANTIDE_AHEL cvahe_variant; 
+    CVARIANTIDE_AHEL cvahe_variant;
     KOMPONENT *tyvi, *lopp;
     sona = *word;
     mille_taha = variandid;  /* kuhu uus komponentide ahel paigutada */
@@ -80,7 +80,7 @@ int MORF0::kchk1(
         lopp = lisa_1komp(&tyvi);
         if (!lopp)
             {
-            return CRASH; 
+            return CRASH;
             }
         lisa_min_info(lopp, word, tyvepik, i);
         lisa_psl_info(lopp, K_LOPP, lnr);
@@ -90,7 +90,7 @@ int MORF0::kchk1(
             {
 	        return res; /* viga! */
             }
-        if (!cvahe_variant.ptr)  
+        if (!cvahe_variant.ptr)
             continue;  /* tyve polnud */
         for (tmp=cvahe_variant.ptr; tmp; tmp=tmp->jargmine_variant)
             { /* kopeeri sobivate hulka koik tyved, mis selle lopuga sobivad */

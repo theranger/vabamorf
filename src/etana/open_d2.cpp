@@ -18,16 +18,16 @@
 
 void DCTRD::open_d2(void)
 	{
-	register int i;
+	int i;
 
 	readeel();
 
 	readends();    // teeb loppude mass.
-	readgrs();     // teeb lgr mass. 
-	readfms();     // teeb vormide mass. 
-	readfgrs();    // teeb lgr mass. 
-	readsuf();     // teeb suf mass. 
-	readprf();     // teeb pref mass. 
+	readgrs();     // teeb lgr mass.
+	readfms();     // teeb vormide mass.
+	readfgrs();    // teeb lgr mass.
+	readsuf();     // teeb suf mass.
+	readprf();     // teeb pref mass.
     // teeb loend[i] mass.
 	for (i=0; i < LOENDEID-1; i++) // tegelik loendite arv <= LOENDEID-1
 	    {
@@ -68,7 +68,7 @@ void DCTRD::open_d2(void)
     lopp_v = lpnr(FSxSTR("v"));
     lopp_0 = null_lopp;
     suva_lp = SUVA_LP;
-	if((signed char)lopp_d == (signed char)-1 || 
+	if((signed char)lopp_d == (signed char)-1 ||
 	   (signed char)lopp_ma == (signed char)-1)   // valikuline test
 		{
         throw(VEAD(ERR_MORFI_PS6N,ERR_ROTTEN,__FILE__,__LINE__, "$Revision: 521 $"));

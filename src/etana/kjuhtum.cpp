@@ -10,7 +10,7 @@
 
 void MORF0::BStart(AHEL2 *a2)
     {
-    konveier=a2;  
+    konveier=a2;
 
     ty1_tyyp.Start(48, 5); // Algselt ruum 48 kirjele. Kui puudu tuleb, lisab 5 kaupa
     /*01*/ ty1_tyyp.AddPtr(new TY1TYYP('A', &lopp_0,  &suva_vrm, FSxSTR(""),        7, 22));// 0 A lyhenenud tyvi (ilma -ne loputa)
@@ -28,7 +28,7 @@ void MORF0::BStart(AHEL2 *a2)
     /*13*/ ty1_tyyp.AddPtr(new TY1TYYP('D', &lopp_0,  &suva_vrm, FSxSTR("\x00E4sja"),   0, 29));//12 a'sja
     /*14*/ ty1_tyyp.AddPtr(new TY1TYYP('D', &lopp_0,  &suva_vrm, FSxSTR("v\x00F5istu"), 0, 25));//13 vo~istu
     /*15*/ ty1_tyyp.AddPtr(new TY1TYYP('D', &lopp_0,  &suva_vrm, FSxSTR(""),        1, 25));//14 ajuti; v�gisi ...
-    /*16*/ ty1_tyyp.AddPtr(new TY1TYYP('G', &suva_lp, &suva_vrm, FSxSTR(""),       15, 28));//15 vahe_mere jms 
+    /*16*/ ty1_tyyp.AddPtr(new TY1TYYP('G', &suva_lp, &suva_vrm, FSxSTR(""),       15, 28));//15 vahe_mere jms
     /*17*/ ty1_tyyp.AddPtr(new TY1TYYP('G', &suva_lp, &suva_vrm, FSxSTR(""),        0, 27));//16 ladina
     /*18*/ ty1_tyyp.AddPtr(new TY1TYYP('I', &suva_lp, &suva_vrm, FSxSTR(""),       10, 25));//17 ladina
     /*19*/ ty1_tyyp.AddPtr(new TY1TYYP('N', &lopp_0,  &sg_n,     FSxSTR(""),        0, 23));//18
@@ -50,7 +50,7 @@ void MORF0::BStart(AHEL2 *a2)
     /*35*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &lopp_0,  &adt,      FSxSTR(""),        0,  9));//34 ma'kke
     /*36*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &lopp_0,  &pl_g,     FSxSTR(""),        0,  7));//35 jalge rinde silme
     /*37*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &lopp_d,  &pl_n,     FSxSTR(""),       14,  7));//36 jo~ulu + d
-    /*38*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &lopp_t,  &sg_p,     FSxSTR("mis"),     0, 26));//37 lyhenenud tyvi; tyve lopus s ?? 
+    /*38*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &lopp_t,  &sg_p,     FSxSTR("mis"),     0, 26));//37 lyhenenud tyvi; tyve lopus s ??
     /*39*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &lopp_t,  &sg_p,     FSxSTR("lis"),     0, 26));//38 lyhenenud tyvi; tyve lopus s ??
     /*40*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &lopp_t,  &sg_p,     FSxSTR("las"),     0,  2));//39 lyhenenud tyvi; tyve lopus s ??
     /*41*/ ty1_tyyp.AddPtr(new TY1TYYP('S', &suva_lp, &suva_vrm, FSxSTR(""),        0, L_TYVE_TYYP));//40 S + mistahes; vajalik ty1+lp+ty2 jaoks
@@ -70,8 +70,7 @@ void MORF0::BStart(AHEL2 *a2)
 */
 int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **sobivad_variandid)
     {
-    register int i;
-    int k, lll, llnr, ffnr, tingimus;
+    int i, k, lll, llnr, ffnr, tingimus;
     char sobiv[SONAL_MAX_PIK];
     FSxCHAR sl[2] = {0, 0};
     KOMPONENT *tyyp, *komp;
@@ -104,14 +103,14 @@ int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **
         for (t=ty1_tyyp.Get(sl); t; t=ty1_tyyp.GetNext(sl))
             {
             yksgrupp = lgrd[i];
-            k = ssobivus(&yksgrupp, sl, 1,  
+            k = ssobivus(&yksgrupp, sl, 1,
                          *(t->sobiks_lp), sl, *(t->vorm), sobiv, sizeof(sobiv));
             if (!k)
                 continue;
             if (*(t->tyvelp))
                 {
                 if (!TaheHulgad::OnLopus(&(ty), t->tyvelp))
-                    continue; // polnud sobiv tyvelp 
+                    continue; // polnud sobiv tyvelp
                 }
             tingimus = 0;
             switch (t->lisakontroll)
@@ -140,7 +139,7 @@ int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **
                         tingimus = 1;
                     break;
                 case 4: /* tyve lopus pole -atav -lik -ne -ke */
-                    if (TaheHulgad::OnLopus(&(ty), FSxSTR("atav")) || 
+                    if (TaheHulgad::OnLopus(&(ty), FSxSTR("atav")) ||
                         TaheHulgad::OnLopus(&(ty), FSxSTR("lik")) ||
                         TaheHulgad::OnLopus(&(ty), FSxSTR("ne")) ||
                         TaheHulgad::OnLopus(&(ty), FSxSTR("ke")) )
@@ -148,15 +147,15 @@ int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **
                     tingimus = 1;
                     break;
                 case 5: /* tyve lopus -se voi -iku */
-                    if (TaheHulgad::OnLopus(&ty, FSxSTR("se")) || 
+                    if (TaheHulgad::OnLopus(&ty, FSxSTR("se")) ||
                         TaheHulgad::OnLopus(&ty, FSxSTR("iku")) )
                         tingimus = 1;
                     break;
                 case 6: /* tyve lopus pole -atava -iku -se */
-                    if (TaheHulgad::OnLopus(&ty, FSxSTR("atava")) || 
-                        TaheHulgad::OnLopus(&ty, FSxSTR("iku")) || 
+                    if (TaheHulgad::OnLopus(&ty, FSxSTR("atava")) ||
+                        TaheHulgad::OnLopus(&ty, FSxSTR("iku")) ||
                         TaheHulgad::OnLopus(&ty, FSxSTR("se")) )
-                            break; 
+                            break;
                     tingimus = 1;
                     break;
                 case 7: /* tyvel voiks olla ne-lopp, aga pole */
@@ -298,35 +297,35 @@ int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **
 
 /*static  TY2TYYP ty2_tyyp [] =
     {
-    {'A', FSxSTR(""), 11, 4},      // ka'a'ndumatu A 
-    {'A', FSxSTR("ne"), 0, 5},     // ne lo'puline A 
-    {'A', FSxSTR("se"), 0, 5},     // ne lo'puline A 
-    {'A', FSxSTR("s"), 12, 5},      // ne lo'puline A 
-    {'A', FSxSTR("rohke"), 1, 5},  // "rohke" 
-    {'A', FSxSTR("vaba"), 1, 5},   // "vaba" 
-    {'A', FSxSTR("rikas"), 1, 5},   // "rikas" 
-    {'A', FSxSTR("rikka"), 1, 5},   // "rikas" 
-    {'A', FSxSTR(""), 10, 10},      // m�ned vabamalt liituvad A 
-    {'A', FSxSTR("ev"), 0, 6},     // v lo'puline A 
-    {'A', FSxSTR("va"), 12, 6},     // v lo'puline A 
-    {'A', FSxSTR(""), 12, 11},      // tavaline A 
+    {'A', FSxSTR(""), 11, 4},      // ka'a'ndumatu A
+    {'A', FSxSTR("ne"), 0, 5},     // ne lo'puline A
+    {'A', FSxSTR("se"), 0, 5},     // ne lo'puline A
+    {'A', FSxSTR("s"), 12, 5},      // ne lo'puline A
+    {'A', FSxSTR("rohke"), 1, 5},  // "rohke"
+    {'A', FSxSTR("vaba"), 1, 5},   // "vaba"
+    {'A', FSxSTR("rikas"), 1, 5},   // "rikas"
+    {'A', FSxSTR("rikka"), 1, 5},   // "rikas"
+    {'A', FSxSTR(""), 10, 10},      // m�ned vabamalt liituvad A
+    {'A', FSxSTR("ev"), 0, 6},     // v lo'puline A
+    {'A', FSxSTR("va"), 12, 6},     // v lo'puline A
+    {'A', FSxSTR(""), 12, 11},      // tavaline A
     {'B', FSxSTR(""), 0, 7},
     {'C', FSxSTR(""), 0, 8},
 #if defined ( FSCHAR_ASCII )     // kasutame 8bitist (filosofti)kooditabelit
-    {'D', FSxSTR("m��da"), 1, 6},   // "mo'o'da" 
+    {'D', FSxSTR("m��da"), 1, 6},   // "mo'o'da"
 #elif defined( FSCHAR_UNICODE )   // kasutame UNICODE kooditabelit
-    {'D', FSxSTR("m\x00F6\x00F6\x0064\x0061"), 1, 6},   // "mo'o'da" 
+    {'D', FSxSTR("m\x00F6\x00F6\x0064\x0061"), 1, 6},   // "mo'o'da"
 #else
     #error Defineeri  FSCHAR_ASCII v�i FSCHAR_UNICODE
 #endif
-    {'D', FSxSTR("vargil"), 1, 5},   // "vargil" 
-    {'D', FSxSTR("vargile"), 1, 5},   // "vargile" 
+    {'D', FSxSTR("vargil"), 1, 5},   // "vargil"
+    {'D', FSxSTR("vargile"), 1, 5},   // "vargile"
     {'G', FSxSTR(""), 0, 2},
-    {'K', FSxSTR("pidi"), 1, 6},   // "pidi" 
-    {'S', FSxSTR("mine"), 0, 18},   // vrd ka ty2suf_tyyp 
+    {'K', FSxSTR("pidi"), 1, 6},   // "pidi"
+    {'S', FSxSTR("mine"), 0, 18},   // vrd ka ty2suf_tyyp
     {'S', FSxSTR("mise"), 0, 18},
     {'S', FSxSTR("mis"), 0, 18},
-    {'S', FSxSTR(""), 2, 3},      // SW 
+    {'S', FSxSTR(""), 2, 3},      // SW
     {'S', FSxSTR(""), 0, 1},
     {'U', FSxSTR(""), 0, 9},
 //    {'W', FSxSTR(""), 2, 202},
@@ -369,7 +368,7 @@ int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **
     {'V', FSxSTR(""), SUVA_SL, FSxSTR("ja"), 18},    // ette sobib A(ne), SA SUVA_VRM, V+daoletaja_tabel.AddPtr(new CFSxOTAB(
     {'V', FSxSTR(""), SUVA_SL, FSxSTR("tamatu"), 16},    // ette sobib A(ne), SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(
     {'V', FSxSTR(""), SUVA_SL, FSxSTR("us"), 16},    // ette sobib A(ne), SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(
-    {'V', FSxSTR(""), SUVA_SL, FSxSTR(""), 12},     // V + mitte v tav dav mat nu du tu mine mise mis ja tamatu us; lubab enda ette SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(         
+    {'V', FSxSTR(""), SUVA_SL, FSxSTR(""), 12},     // V + mitte v tav dav mat nu du tu mine mise mis ja tamatu us; lubab enda ette SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(
 //    {' ', FSxSTR(""), SUVA_SL, FSxSTR(""), 0}         // lo'putingimus
     };
 // 12 V + mitte v tav dav mat nu du tu mine mise mis ja tamatu us; ette sobib SA SUVA_VRM, ei sobi A(ne) oletaja_tabel.AddPtr(new CFSxOTAB(
@@ -385,14 +384,14 @@ int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **
     {
     int FSxTY2Bs(const void *ee1, const void *ee2 )// vajalik 2ndotsimiseks
         {
-        const FSxCHAR  *e1=(const FSxCHAR *)ee1; 
+        const FSxCHAR  *e1=(const FSxCHAR *)ee1;
         const TY2TYYP  *e2=(const TY2TYYP   *)ee2;
         return TaheHulgad::FSxCHCMP( *e1, e2->sl);
         }
 
     int FSxTY2SUFBs(const void *ee1, const void *ee2 )// vajalik 2ndotsimiseks
         {
-        const FSxCHAR  *e1=(const FSxCHAR *)ee1; 
+        const FSxCHAR  *e1=(const FSxCHAR *)ee1;
         const TY2SUFTYYP  *e2=(const TY2SUFTYYP   *)ee2;
         return TaheHulgad::FSxCHCMP( *e1, e2->sl);
         }
@@ -400,38 +399,38 @@ int MORF0::juht1(KOMPONENT *tyvi, TYVE_INF *lgrd, int sl_ind, VARIANTIDE_AHEL **
 
 TY2::TY2(void)
     {
-    //tyyp.Start(ty2_tyyp, sizeof(ty2_tyyp)/sizeof(TY2TYYP), 0, FSxTY2Bs);    
+    //tyyp.Start(ty2_tyyp, sizeof(ty2_tyyp)/sizeof(TY2TYYP), 0, FSxTY2Bs);
     tyyp.Start(26,0); // NB! seda ei sordi-peab olema kirjutatud �ige j�rjestusega; kui lisad ridu, siis suurenda ka numbrit 26 !!
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR(""), 11, 4));      // ka'a'ndumatu A 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("ne"), 0, 5));     // ne lo'puline A 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("se"), 0, 5));     // ne lo'puline A 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("s"), 12, 5));      // ne lo'puline A 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("rohke"), 1, 5));  // "rohke" 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("vaba"), 1, 5));   // "vaba" 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("rikas"), 1, 5));   // "rikas" 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("rikka"), 1, 5));   // "rikas" 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR(""), 10, 10));      // m�ned vabamalt liituvad A 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("ev"), 0, 6));     // v lo'puline A 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("va"), 12, 6));     // v lo'puline A 
-    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR(""), 12, 11));      // tavaline A 
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR(""), 11, 4));      // ka'a'ndumatu A
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("ne"), 0, 5));     // ne lo'puline A
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("se"), 0, 5));     // ne lo'puline A
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("s"), 12, 5));      // ne lo'puline A
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("rohke"), 1, 5));  // "rohke"
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("vaba"), 1, 5));   // "vaba"
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("rikas"), 1, 5));   // "rikas"
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("rikka"), 1, 5));   // "rikas"
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR(""), 10, 10));      // m�ned vabamalt liituvad A
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("ev"), 0, 6));     // v lo'puline A
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR("va"), 12, 6));     // v lo'puline A
+    tyyp.AddPtr(new CTY2TYYP('A', FSxSTR(""), 12, 11));      // tavaline A
     tyyp.AddPtr(new CTY2TYYP('B', FSxSTR(""), 0, 7));
     tyyp.AddPtr(new CTY2TYYP('C', FSxSTR(""), 0, 8));
-    tyyp.AddPtr(new CTY2TYYP('D', FSxSTR("m\x00F6\x00F6\x0064\x0061"), 1, 6));   // "mo'o'da" 
-    tyyp.AddPtr(new CTY2TYYP('D', FSxSTR("vargil"), 1, 5));   // "vargil" 
-    tyyp.AddPtr(new CTY2TYYP('D', FSxSTR("vargile"), 1, 5));   // "vargile" 
+    tyyp.AddPtr(new CTY2TYYP('D', FSxSTR("m\x00F6\x00F6\x0064\x0061"), 1, 6));   // "mo'o'da"
+    tyyp.AddPtr(new CTY2TYYP('D', FSxSTR("vargil"), 1, 5));   // "vargil"
+    tyyp.AddPtr(new CTY2TYYP('D', FSxSTR("vargile"), 1, 5));   // "vargile"
     tyyp.AddPtr(new CTY2TYYP('G', FSxSTR(""), 0, 2));
-    tyyp.AddPtr(new CTY2TYYP('K', FSxSTR("pidi"), 1, 6));   // "pidi" 
-    tyyp.AddPtr(new CTY2TYYP('S', FSxSTR("mine"), 0, 18));   // vrd ka ty2suf_tyyp 
+    tyyp.AddPtr(new CTY2TYYP('K', FSxSTR("pidi"), 1, 6));   // "pidi"
+    tyyp.AddPtr(new CTY2TYYP('S', FSxSTR("mine"), 0, 18));   // vrd ka ty2suf_tyyp
     tyyp.AddPtr(new CTY2TYYP('S', FSxSTR("mise"), 0, 18));
     tyyp.AddPtr(new CTY2TYYP('S', FSxSTR("mis"), 0, 18));
-    tyyp.AddPtr(new CTY2TYYP('S', FSxSTR(""), 2, 3));      // SW 
+    tyyp.AddPtr(new CTY2TYYP('S', FSxSTR(""), 2, 3));      // SW
     tyyp.AddPtr(new CTY2TYYP('S', FSxSTR(""), 3, 4));      // m�ned S ei liitu sg n-le, nt. "und"
     tyyp.AddPtr(new CTY2TYYP('S', FSxSTR(""), 0, 1));
     tyyp.AddPtr(new CTY2TYYP('U', FSxSTR(""), 0, 9));
 //    {'W', FSxSTR(""), 2, 202));
 //    {' ', FSxSTR(""), 0, 0}         // lo'putingimus
 
-    //suftyyp.Start(ty2suf_tyyp, sizeof(ty2suf_tyyp)/sizeof(TY2SUFTYYP), 0, FSxTY2SUFBs);  
+    //suftyyp.Start(ty2suf_tyyp, sizeof(ty2suf_tyyp)/sizeof(TY2SUFTYYP), 0, FSxTY2SUFBs);
     suftyyp.Start(36,0); // NB! seda ei sordi-peab olema kirjutatud �uge j�rjestusega
     suftyyp.AddPtr(new CTY2SUFTYYP('A', FSxSTR("rikka"), SUVA_SL, FSxSTR(""), 5));     // rikka=m jms oletaja_tabel.AddPtr(new CFSxOTAB(
     suftyyp.AddPtr(new CTY2SUFTYYP('A', FSxSTR("vaese"), SUVA_SL, FSxSTR(""), 5));     // vaese=m jms oletaja_tabel.AddPtr(new CFSxOTAB(
@@ -468,7 +467,7 @@ TY2::TY2(void)
     suftyyp.AddPtr(new CTY2SUFTYYP('V', FSxSTR(""), SUVA_SL, FSxSTR("ja"), 18));    // ette sobib A(ne), SA SUVA_VRM, V+daoletaja_tabel.AddPtr(new CFSxOTAB(
     suftyyp.AddPtr(new CTY2SUFTYYP('V', FSxSTR(""), SUVA_SL, FSxSTR("tamatu"), 16));    // ette sobib A(ne), SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(
     suftyyp.AddPtr(new CTY2SUFTYYP('V', FSxSTR(""), SUVA_SL, FSxSTR("us"), 16));    // ette sobib A(ne), SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(
-    suftyyp.AddPtr(new CTY2SUFTYYP('V', FSxSTR(""), SUVA_SL, FSxSTR(""), 12));     // V + mitte v tav dav mat nu du tu mine mise mis ja tamatu us; lubab enda ette SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(         
+    suftyyp.AddPtr(new CTY2SUFTYYP('V', FSxSTR(""), SUVA_SL, FSxSTR(""), 12));     // V + mitte v tav dav mat nu du tu mine mise mis ja tamatu us; lubab enda ette SA SUVA_VRM oletaja_tabel.AddPtr(new CFSxOTAB(
 //  {' ', FSxSTR(""), SUVA_SL, FSxSTR(""), 0}         // lo'putingimus
 // 12 V + mitte v tav dav mat nu du tu mine mise mis ja tamatu us; ette sobib SA SUVA_VRM, ei sobi A(ne) oletaja_tabel.AddPtr(new CFSxOTAB(
 // 13 A ty lopus pole va; S; B + AS; C + AS; U + AS; G; N + AS; ette sobib S sg n, sg g, pl n (0-lopuline); A sg n sg g oletaja_tabel.AddPtr(new CFSxOTAB(
@@ -514,12 +513,12 @@ int MORF0::juht2(KOMPONENT *tyvi)
                     if (tyvi->k_algus == t->tyvelp)
                         tingimus = 1;
                     break;
-                case 2: // SW, aga mitte "olev"   
+                case 2: // SW, aga mitte "olev"
                     if ((tyvi->liitumisinfo).Find(W_SL) != -1 && (tyvi->algvorm != FSxSTR("olev")))
                         tingimus = 1;
                     break;
-                case 3: // juuni 2006 HJK 
-                    if (tyvi->algvorm == FSxSTR("uni") || //"uni, und" ei saa liituda S sg n-ga, vaid v�hematega (on selle poolest nagu k��ndumatu A)   
+                case 3: // juuni 2006 HJK
+                    if (tyvi->algvorm == FSxSTR("uni") || //"uni, und" ei saa liituda S sg n-ga, vaid v�hematega (on selle poolest nagu k��ndumatu A)
                         tyvi->k_algus == FSxSTR("iste"))  // et vältida Palm_iste jms
                         tingimus = 1;
                     break;
@@ -547,7 +546,7 @@ int MORF0::juht2(KOMPONENT *tyvi)
 /*
                         if (tyvi->k_pikkus == 5)
                             {
-                            if (!strcmp(tyvi->k_algus, "karva") || 
+                            if (!strcmp(tyvi->k_algus, "karva") ||
                                 !strcmp(tyvi->k_algus, "kasvu") ||
                                 !strcmp(tyvi->k_algus, "moodi") ||
                                 !strcmp(tyvi->k_algus, "v�rvi") ||
@@ -738,7 +737,7 @@ int MORF0::tyvi1tyvi2(VARIANTIDE_AHEL **ty1_variandid, VARIANTIDE_AHEL **ty2_var
                 continue;
             if (tyvi1->liitumistyyp < L_TYVE_TYYP)     /* ty1+ty2 */
                 l1 = ty1ty2(tyvi1->liitumistyyp, tyvi2->liitumistyyp);
-            else 
+            else
                 {/* ty1+lp+ty2 */
                 l1 = ty1_l_ty2(tyvi1->liitumistyyp, tyvi2->liitumistyyp);
                 /* V+da puhul tohib ty2 olla ainult saa */
@@ -777,11 +776,11 @@ int MORF0::tyvi1tyvi2(VARIANTIDE_AHEL **ty1_variandid, VARIANTIDE_AHEL **ty2_var
     }
 
 int MORF0::liitsona(
-    VARIANTIDE_AHEL **ty1_ahelad, 
-    KOMPONENT *ty2, 
-    FSXSTRING *S6na, 
-    int eel_pik, 
-    VARIANTIDE_AHEL **sobivad_variandid, 
+    VARIANTIDE_AHEL **ty1_ahelad,
+    KOMPONENT *ty2,
+    FSXSTRING *S6na,
+    int eel_pik,
+    VARIANTIDE_AHEL **sobivad_variandid,
     char *paha_koht,
     const int paha_koha_suurus)
     {
@@ -796,7 +795,7 @@ int MORF0::liitsona(
 	    return res; /* viga! */
         }
     /* v�ldime tegelikult juba leitud variantide uuesti leidmist */
-    for (VARIANTIDE_AHEL *tmp=ctyvi2_variant.ptr; tmp; tmp=tmp->jargmine_variant) 
+    for (VARIANTIDE_AHEL *tmp=ctyvi2_variant.ptr; tmp; tmp=tmp->jargmine_variant)
         {
         for (viimane=esimene_komp(tmp); viimane->komp_jargmine; viimane=viimane->komp_jargmine)
             ;
@@ -809,7 +808,7 @@ int MORF0::liitsona(
             }
         }
 
-    // int tugevus = 
+    // int tugevus =
     tyvi1tyvi2(ty1_ahelad, &ctyvi2_variant.ptr, sobivad_variandid);
     /* siin vo'iks kunagi veel kontrollida tugevus va'a'rtust, et mitte liiga kahtlasi lubada ...*/
     ahelad_vabaks(&ctyvi2_variant.ptr);
@@ -818,7 +817,7 @@ int MORF0::liitsona(
     }
 
 /* ty1+ty2+t3 puhuks ty1 ja ty2 sobivuse kirjeldamiseks */
-/* teisendustabel ty1 tyybi teisendamiseks ty1+ty2 juhult ty1+ty2+t3 tarvis */ 
+/* teisendustabel ty1 tyybi teisendamiseks ty1+ty2 juhult ty1+ty2+t3 tarvis */
 static  int ty1_to_ty11[TY1_TYYPE] =
     { 0,  0,  1,  2,  3,  0, 16,  4,  0,  0,
       0,  0,  0,  5,  0,  6,  7,  8,  0,  0,

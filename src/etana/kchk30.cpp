@@ -6,13 +6,13 @@
 #include "mrf-mrf.h"
 
 int MORF0::kchk30(
-    VARIANTIDE_AHEL **variandid, 
-    FSXSTRING *S6na, int S6naPikkus, 
-    VARIANTIDE_AHEL **sobivad_variandid, 
+    VARIANTIDE_AHEL **variandid,
+    FSXSTRING *S6na, int S6naPikkus,
+    VARIANTIDE_AHEL **sobivad_variandid,
     char *paha_koht,
     const int paha_koha_suurus)
     {
-    register int i, max;
+    int i, max;
     VARIANTIDE_AHEL *sobiv_variant, *tmp, *variant, *pref_variant, *mille_taha, *vt_piir; //ok
     CVARIANTIDE_AHEL cvahe_variant;
     KOMPONENT *tt, *tyvi, *pref, *lopp, *essa;
@@ -60,7 +60,7 @@ int MORF0::kchk30(
             res = ty_lp(lopp, tyvi->nihe, tyvi->k_pikkus, &cvahe_variant.ptr, paha_koht,paha_koha_suurus);
 	        if (res > ALL_RIGHT)
 	            return res; /* viga! */
-            if (!cvahe_variant.ptr)  
+            if (!cvahe_variant.ptr)
                 continue;  /* tyve polnud */
             for (tmp=cvahe_variant.ptr; tmp; tmp=tmp->jargmine_variant) /* vt neid juhte, kus ty+lp juba sobivad */
                 { /* kopeeri sobivate hulka koik tyved, mis selle lopuga sobivad */
