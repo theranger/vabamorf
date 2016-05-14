@@ -64,16 +64,12 @@ public:
 		FSFree(pData);
 #else
 		INTPTR ipByteSize=pData->m_ipBufSize*ipCharSize;
-		if (this) {
-			__FSSTRINGFREE(32)
-			else __FSSTRINGFREE(64)
-			else __FSSTRINGFREE(128)
-			else __FSSTRINGFREE(256)
-			else __FSSTRINGFREE(512)
-			else FSFree(pData);
-		} else {
-			FSFree(pData);
-		}
+		__FSSTRINGFREE(32)
+		else __FSSTRINGFREE(64)
+		else __FSSTRINGFREE(128)
+		else __FSSTRINGFREE(256)
+		else __FSSTRINGFREE(512)
+		else FSFree(pData);
 #endif
 	}
 
@@ -141,7 +137,7 @@ bool FSCThreadInit() {
 #if defined (WINRT)
 	if (!g_FSStringMemoryPool) {
 		g_FSStringMemoryPool=pPool;
-	} else 
+	} else
 #elif defined (WIN32)
 	if (g_TlsKey==TLS_OUT_OF_INDEXES || TlsGetValue(g_TlsKey)!=0 || !TlsSetValue(g_TlsKey, pPool))
 #elif defined (UNIX)
@@ -191,7 +187,7 @@ BOOL WINAPI FSDllMain(HINSTANCE hInstDLL, DWORD dwReason, LPVOID lpvReserved) {
 		case DLL_PROCESS_DETACH:
 			FSCTerminate();
 			break;
-	} 
+	}
 	return true;
 }
 #endif
