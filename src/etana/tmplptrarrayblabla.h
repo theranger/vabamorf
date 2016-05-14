@@ -19,7 +19,7 @@ class CLOEND
         /// Argumentideta konstruktor
         /// �nnestub alati.
         CLOEND(void) throw()
-            { 
+            {
             InitClassVariables();
             assert(EmptyClassInvariant());
             }
@@ -27,7 +27,7 @@ class CLOEND
         /// Argumentidega konstruktor
         //
         /// Kui kirjete v�rdlusfunktsiooni pole antud, ei j�rjsesta
-        /// ja eeldame, et kirjed on juba j�rjsestatud. 
+        /// ja eeldame, et kirjed on juba j�rjsestatud.
         /// @throw VEAD
         CLOEND(
             REC* _ptr_,                 ///< massiivi viit
@@ -50,7 +50,7 @@ class CLOEND
         /// Klassi initsailiseerimiseks peale argumentideta konstruktorit
         //
         /// Kui kirjete v�rdlusfunktsiooni pole antud, ei j�rjsesta
-        /// ja eeldame, et kirjed on juba j�rjsestatud. 
+        /// ja eeldame, et kirjed on juba j�rjsestatud.
         /// @throw VEAD
         void Start(
             REC* _ptr_,                 ///< massiivi viit
@@ -96,7 +96,7 @@ class CLOEND
                 }
             }
 
-        ~CLOEND(void) 
+        ~CLOEND(void)
             {
             Stop(false);
             }
@@ -161,7 +161,7 @@ class CLOEND
         /// @return
         /// - @a !=NULL Leidis
         /// - @a ==NULL Ei leidnud
-        const REC* LGetRec( 
+        const REC* LGetRec(
             const KEY* key, ///< V�tme viit
             int* idx=NULL   ///< @a ==-1 polnud; @a >=0 leitud kirje indeks
             ) const
@@ -213,7 +213,7 @@ class CLOEND
                 throw(VEAD(ERR_X_TYKK,ERR_ARGVAL,__FILE__,__LINE__,"$Revision: 961 $"));
             return ptr[idx];
             }
-                  
+
         /// Kahendotsimine: v�ti -> kirje indeksiks
         //
         /// @return
@@ -225,7 +225,7 @@ class CLOEND
             {
             return Find(key);
             }
- 
+
         bool EmptyClassInvariant(void) const throw()
             {
             return len==0 && cmpsrt==NULL && cmpbs==NULL && ptr==NULL;
@@ -234,7 +234,7 @@ class CLOEND
         bool ClassInvariant(void) const throw()
             {
             // Kui kirjete v�rdlusfunktsiooni pole antud, ei j�rjsesta.
-            // Eeldame, et on juba j�rjsestatud 
+            // Eeldame, et on juba j�rjsestatud
             return len > 0 && ptr!=NULL && cmpbs!=NULL;
             }
 
@@ -277,7 +277,7 @@ class CKLOEND : public CLOEND<REC, KEY>
         /// Argumentidega konstruktor
         //
         /// @attention See konstruktor v�ib vaba m�lu
-        /// puudusel eba�nnestuda. 
+        /// puudusel eba�nnestuda.
         /// @throw VEAD,
         /// CFSMemoryException, CFSRuntimeException
         CKLOEND(
@@ -295,17 +295,17 @@ class CKLOEND : public CLOEND<REC, KEY>
         /// - @a !=NULL Viit kirjele
         /// - @a ==NULL Ponud
         const REC* Get(
-            const FSWCHAR* key,  ///< v�ti 
+            const FSWCHAR* key,  ///< v�ti
             const int keyLen     ///< V�tme pikkus
-            ) 
+            )
             {
             CLOEND<REC, KEY>::tmpString = key;
-            CLOEND<REC, KEY>::tmpString[keyLen] = 0;            
+            CLOEND<REC, KEY>::tmpString[keyLen] = 0;
             //TODO::ma arvan siin peaks ka olema lastKey=&tmpString;
             return Get((const FSxCHAR *)(CLOEND<REC,KEY>::tmpString));
-            
+
             //LOEND<REC, KEY>::tmpString = key;
-            //LOEND<REC, KEY>::tmpString[keyLen] = 0;            
+            //LOEND<REC, KEY>::tmpString[keyLen] = 0;
             //return Get((FSxCHAR *)((const FSxCHAR *)LOEND<REC, KEY>::tmpString));
             }
 
@@ -321,7 +321,7 @@ class CKLOEND : public CLOEND<REC, KEY>
             int idx = CLOEND<REC,KEY>::Find(key);
             if(idx < 0)
                 return NULL;
-            while(idx>0 && 
+            while(idx>0 &&
                 CLOEND<REC,KEY>::cmpbs(key, CLOEND<REC,KEY>::ptr+idx-1)==0)
                 --idx;
             lastIdx=idx;
@@ -333,7 +333,7 @@ class CKLOEND : public CLOEND<REC, KEY>
         /// Kahendotsimine: Leiab j�rgmise v�tmle vastava kirje
         const REC* GetNext(void)
             {
-            if(++lastIdx < CLOEND<REC,KEY>::len && 
+            if(++lastIdx < CLOEND<REC,KEY>::len &&
 	           CLOEND<REC,KEY>::cmpbs(lastKey, CLOEND<REC,KEY>::ptr+lastIdx)==0)
                 {
                 //return &(LOEND<REC, KEY>::ptr[lastIdx]);
