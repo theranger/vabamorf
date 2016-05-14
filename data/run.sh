@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIR="$(dirname $(readlink -f $0))"
+DIR=$(cd "$(dirname ${0})" && echo ${PWD})
 BIN_DIR="${DIR}/../bin"
 MRF_DIR="${DIR}/mrf"
 YHH_DIR="${DIR}/yhh"
