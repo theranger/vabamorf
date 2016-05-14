@@ -34,7 +34,7 @@ bool ETMRFAS::Set1(LYLI &lyli)
         throw(VEAD(ERR_GEN_MOOTOR,ERR_ARGVAL,__FILE__,__LINE__));
     return ETMRFA::Set1(lyli);
 }
-    
+
 bool ETMRFAS::Set1(LYLI *pLyli)
 {
     if(mrfFlags->ChkB(MF_GENE)==true)
@@ -129,7 +129,7 @@ bool ETMRFAS::Synt(MRFTULEMUSED &valja, const MRFTUL &sisse, const FSXSTRING nai
 
 // endine synt1 HJK 04.04.2014
 
-bool ETMRFAS::SyntDetailne(      
+bool ETMRFAS::SyntDetailne(
     MRFTULEMUSED   &valja,
     const FSXSTRING  *pGeneSona,
     const FSXSTRING  *pnaidis,
@@ -165,7 +165,7 @@ bool ETMRFAS::SyntDetailne(
                                     // konstandiga, kust tulemus tegelikult tuli.
                                     // Nii et päeva lõpuks peaks olema eMRF_XX asemel
                                     // midagi muud. Aga igaks juhuks initsialiseerime
-                                    // ta selliselt. 
+                                    // ta selliselt.
     MRF_FLAGS_BASE_TYPE geneLipud = mrfFlags->Get();
     FSXSTRING mrfAnal;
     // vaja morfida, kusjuures liiga pikad oleksid valed ja lühendeid üldse ei oleta
@@ -189,7 +189,7 @@ bool ETMRFAS::SyntDetailne(
         ETMRFA::Set1(GeneSona1); // morfi magasini
         n++;
         }
-    LYLI morfistLyli;   
+    LYLI morfistLyli;
     if(ETMRFA::Flush(morfistLyli)==false) // morfi magasinist
         {
         ETMRFA::Clr();
@@ -209,7 +209,7 @@ bool ETMRFAS::SyntDetailne(
             return false;
             }
         }
-    if (a.idxLast != 0) 
+    if (a.idxLast != 0)
         {
         // nt. taheti geneda mitmesõnalist, aga seda ei õnnestunud analüüsida
         //delete pLyli;
@@ -276,18 +276,18 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
     char algv_lopp;
     int algv_vorm;
 	int viimne;
-    
+
     FSXSTRING gene_liik = KOIK_LIIGID;  // igaks juhuks
     FSXSTRING genetud_tyvi, gene_t1, gene_t2, ette, kigi;
     int i, sgn=0, k1, k2;
     bool r;
     FSxCHAR vi;
- 
+
     if (pMrfTul->Get_vormid(FSxSTR("sg n,")) != -1)
-         sgn = 1; // analyyside hulgas leidub sg n 
+         sgn = 1; // analyyside hulgas leidub sg n
     i = pMrfTul->Get_vormid(FSxSTR("ma,"));
     if (i != -1 && pMrfTul->Get_vormid(FSxSTR("tama,")) != i)
-         sgn = 1; // analyyside hulgas leidub ma 
+         sgn = 1; // analyyside hulgas leidub ma
     if (*pGeneLiik == FSxSTR("*"))
         gene_liik = KOIK_LIIGID;
     else
@@ -318,11 +318,11 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
                         kigi = FSxSTR("ki");
                     }
                 pValja->Add(
-                    (const FSxCHAR *)genetud_tyvi, 
-                    FSxSTR(""),  // 0-l�pu puhul 0 ei lisa 
-                    (const FSxCHAR *)kigi, // 
-                    (*pMrfTul)[i]->sl, 
-                    (*pMrfTul)[i]->vormid);  
+                    (const FSxCHAR *)genetud_tyvi,
+                    FSxSTR(""),  // 0-l�pu puhul 0 ei lisa
+                    (const FSxCHAR *)kigi, //
+                    (*pMrfTul)[i]->sl,
+                    (*pMrfTul)[i]->vormid);
 
                 continue;
                 }
@@ -334,7 +334,7 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
             algv_lopp = null_lopp;
             algv_vorm = sg_n;
             }
-        else if ((*pMrfTul)[i]->vormid.Left(3) == FSxSTR("ma,")) 
+        else if ((*pMrfTul)[i]->vormid.Left(3) == FSxSTR("ma,"))
             {
             sgn=1;        //* on leitud lihtsaim algvorm *
             algv_lopp = lopp_ma;
@@ -347,17 +347,17 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
             algv_vorm = sg_g;
             }
         else if (!sgn && (*pMrfTul)[i]->vormid.Find(FSxSTR("pl n,"))!= -1)
-            {  
+            {
             algv_lopp = lopp_d;
             algv_vorm = pl_n;
             // HJK 2008: igaks juhuks (kui eelnenud analüüsil on tehtud tyve asemel lemma)
             if ( (*pMrfTul)[i]->tyvi.Right(1) == FSxSTR("d") ) // nt Madalmaad; votad lopust maha
                 (*pMrfTul)[i]->tyvi = (*pMrfTul)[i]->tyvi.Left((*pMrfTul)[i]->tyvi.GetLength()-1);
             }
-        else if (!sgn && 
-			// null-lopp !!! 
+        else if (!sgn &&
+			// null-lopp !!!
 			(*pMrfTul)[i]->sl == LIIK_VERB &&
-			((*pMrfTul)[i]->tyvi == FSxSTR("ei") || 
+			((*pMrfTul)[i]->tyvi == FSxSTR("ei") ||
 			(*pMrfTul)[i]->tyvi == FSxSTR("\x00E4ra")))  // ei, ära puhuks
             {
             algv_lopp = null_lopp;
@@ -378,14 +378,14 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
 	gene_t2.Remove((FSxCHAR)'+');
 	gene_t2.Remove((FSxCHAR)'=');
 	ette = FSxSTR("");
-	viimne = pValja->idxLast; 
+	viimne = pValja->idxLast;
  	r = GeneMTVDetailne(pValja, &ette, &gene_t2, pnaidis, &gene_liik, pGeneVormid, algv_lopp, algv_vorm, pGeneKigi );
         if (r == false)
             return false;
-	if (pValja->idxLast > viimne) // midagi leitigi 
+	if (pValja->idxLast > viimne) // midagi leitigi
             {
             pValja->eKustTulemused = eMRF_SP; // tulemused põhisõnastikust
-            continue; 
+            continue;
             }
         k1 = gene_t1.ReverseFind((FSxCHAR)'_')+1;
         k2 = gene_t1.ReverseFind((FSxCHAR)'=')+1;
@@ -404,11 +404,11 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
             ette.Remove((FSxCHAR)'_');
             ette.Remove((FSxCHAR)'=');
 	    ette.Remove((FSxCHAR)'+');
-	    r = GeneSTV(pValja, &ette, &gene_t2, /*&((*pMrfTul)[i]->sl),*/ &gene_liik, pGeneVormid, algv_lopp, algv_vorm, pGeneKigi ); 
+	    r = GeneSTV(pValja, &ette, &gene_t2, /*&((*pMrfTul)[i]->sl),*/ &gene_liik, pGeneVormid, algv_lopp, algv_vorm, pGeneKigi );
 	    if (r == false)
 		return false;
-	    if (pValja->idxLast > viimne) // midagi leitigi 
-		continue; 
+	    if (pValja->idxLast > viimne) // midagi leitigi
+		continue;
             }
 	// viimane komponent oli osasõna
 	for (k1=gene_t1.Find((FSxCHAR)'_'); k1!=-1; k1=gene_t1.Find((FSxCHAR)'_', k1+1)) // võta järjest eestpoolt osi ära, kuni midagi järel pole
@@ -425,10 +425,10 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
 	    r = GeneMTVDetailne(pValja, &ette, &gene_t2, pnaidis, &gene_liik, pGeneVormid, algv_lopp, algv_vorm, pGeneKigi );
 	    if (r == false)
 		return false;
-	    if (pValja->idxLast > viimne) // midagi leitigi 
+	    if (pValja->idxLast > viimne) // midagi leitigi
                 {
                 pValja->eKustTulemused = eMRF_SP; // tulemused põhisõnastikust
-		break; 
+		break;
                 }
 	    }
         }
@@ -439,15 +439,15 @@ bool ETMRFAS::Gene2Detailne(       // -1==siiber; 0==ok
 // NB ei keera vastavalt suur-lipule pärast
 //
 
-bool ETMRFAS::GeneMTVDetailne( 
+bool ETMRFAS::GeneMTVDetailne(
     MRFTULEMUSED *pValja,
     FSXSTRING *gPrf,       // käib tüve ette
-    const FSXSTRING *gTyviAlgne,      
+    const FSXSTRING *gTyviAlgne,
     const FSXSTRING *pnaidis,
     const FSXSTRING *sl,		   // sonaliigid, millesse kuuluvaid sõnu tahetakse
-    const FSXSTRING *geneVormid, // genetavate vormide loend 
-    const int algv_lopp,   // 0, -ma voi -d 
-    const int algv_vorm,   // sg_g, sg_n, ma või pl_n 
+    const FSXSTRING *geneVormid, // genetavate vormide loend
+    const int algv_lopp,   // 0, -ma voi -d
+    const int algv_vorm,   // sg_g, sg_n, ma või pl_n
     const FSXSTRING  *pGeneKigi)
     {
     int i, idx, res, k1, k2, nSonaLiiki;
@@ -459,12 +459,12 @@ bool ETMRFAS::GeneMTVDetailne(
     TYVE_INF naidise_dptr[SONAL_MAX_PIK];
     int naidise_idx=0, mitu_naidise_homon=0;
 
-    // leia näidissõna muutumisviis 
+    // leia näidissõna muutumisviis
     if (pnaidis->GetLength() > 0)
         {
         res=cXXfirst((const FSxCHAR*) *pnaidis, pnaidis->GetLength(), &naidise_idx);
         if(res == 0) // s.t. leidis mis vaja
-            { 
+            {
             sonaLiigid = sonaliik[naidise_idx];
             mitu_naidise_homon = sonaLiigid->GetLength();
             memmove(naidise_dptr, dptr, SizeOfLg2(mitu_naidise_homon));
@@ -512,7 +512,7 @@ bool ETMRFAS::GeneMTVDetailne(
             return GeneSTV(pValja, gPrf, gTyviAlgne, sl, geneVormid, algv_lopp, algv_vorm, pGeneKigi);
             }
         }
- 
+
     if(res == POLE_SEDA || res == POLE_YLDSE) // seda ei saa olla
         return true;
     sonaLiigid=sonaliik[idx];
@@ -523,7 +523,7 @@ bool ETMRFAS::GeneMTVDetailne(
         {
         // vaja kontrollida, kas on ikka vajaliku algvormi tüvi
         gTyviUus = gene_t2;
-        if(OtsiTyvi(&(tmp_dptr[i].idx), 
+        if(OtsiTyvi(&(tmp_dptr[i].idx),
                         algv_lopp, algv_vorm, &gTyviUus)==false)
             continue; //polnud sobiv tüvi
         if(gTyviUus == gene_t2) // õige algvormi tüvi
@@ -536,16 +536,16 @@ bool ETMRFAS::GeneMTVDetailne(
                 // kah õige sõnaliik,
                 // tahad A-d saad B,
                 // aga ütleme, et said A
-                if(GeneTLDetailne(pValja, naidise_dptr, mitu_naidise_homon, gPrf, &gTyviUus, 
-                    (FSxCHAR)'A', 
+                if(GeneTLDetailne(pValja, naidise_dptr, mitu_naidise_homon, gPrf, &gTyviUus,
+                    (FSxCHAR)'A',
                     &(tmp_dptr[i]),geneVormid, pGeneKigi)==false)
                     return false; // crash
                 }
             else if(sl->Find((*sonaLiigid)[i]) >= 0)
             //if((*sl)[0]==(*(mrf->sonaliik[idx]))[i])
                 {
-                if(GeneTLDetailne(pValja, naidise_dptr, mitu_naidise_homon, gPrf, &gTyviUus, 
-                    (*sonaLiigid)[i], 
+                if(GeneTLDetailne(pValja, naidise_dptr, mitu_naidise_homon, gPrf, &gTyviUus,
+                    (*sonaLiigid)[i],
                     &(tmp_dptr[i]),geneVormid, pGeneKigi)==false)
                     return false; // crash
                 }
@@ -554,8 +554,8 @@ bool ETMRFAS::GeneMTVDetailne(
     return true;
     }
 
-//bool ETMRFAS::GeneTLDetailne( 
-bool ETMRFAS::GeneTLDetailne( 
+//bool ETMRFAS::GeneTLDetailne(
+bool ETMRFAS::GeneTLDetailne(
     MRFTULEMUSED  *pValja,
     const TYVE_INF *naidise_dptr,
     const int mitu_naidise_homon,
@@ -601,7 +601,7 @@ bool ETMRFAS::GeneTLDetailne(
         // peab tsükeldama ja sõnaliike ja tab_idx kontrollima,
         // sest sõnastik on niimoodi tehtud:
         // homonüümsed tüved (s.h. mittevajalikud) on kuidagi üheskoos...
-        for (j=0; j < sliike; j++) 
+        for (j=0; j < sliike; j++)
             {
             int jj;
             for (jj=0; jj < mitu_naidise_homon; jj++)
@@ -614,7 +614,7 @@ bool ETMRFAS::GeneTLDetailne(
             if ((*sonaliik[slTabIdx])[j] == sl || // on sama sõnaliik ...
                 ((*sonaliik[slTabIdx])[j] == (FSxCHAR)'B' && sl == (FSxCHAR)'A')) // või sobiv sõnalik
                 {
-                if (dptr[j].idx.tab_idx == tyveinf->idx.tab_idx) 
+                if (dptr[j].idx.tab_idx == tyveinf->idx.tab_idx)
                     { // ... ja sama paradigma tüvi
                     LisaKdptr(dptr, &vormityvi, &tyvi, j);
                     if(GeneL(pValja, gPrf, &vormityvi, sl, dptr[j].lg_nr, geneVormid, pGeneKigi)==false)
@@ -629,7 +629,7 @@ bool ETMRFAS::GeneTLDetailne(
     return true;
     }
 
-bool ETMRFAS::GeneL(  
+bool ETMRFAS::GeneL(
     MRFTULEMUSED   *pValja,
     const FSXSTRING *gPrf,       // käib tüve ette
     const FSXSTRING *gTyvi,      // tüvi morf analüüsijast
@@ -658,11 +658,11 @@ bool ETMRFAS::GeneL(
     return true;
     }
 
-bool ETMRFAS::GeneL1( 
+bool ETMRFAS::GeneL1(
     MRFTULEMUSED   *pValja,
     const FSXSTRING *gPrf,       // käib tüve ette
     const FSXSTRING *gTyvi,      // tüvi morf analüüsijast
-    const FSxCHAR   sl,		  
+    const FSxCHAR   sl,
         const int  lgNr,
     const FSXSTRING *geneVorm, // genetav vorm
     const FSXSTRING  *pGeneKigi)
@@ -684,7 +684,7 @@ bool ETMRFAS::GeneL1(
     vormideAlgusNihe = homo_form * l6ppudeAlgusNihe;
     ffnr = vormnr((const FSxCHAR *)*geneVorm);
     assert( l6ppudeAlgusNihe >=0 && l6ppudeArv >=0  && vormideAlgusNihe >=0 );
-    
+
     if(ffnr <= 0)
         return false; // sellist vormi pole üldse olemaski
     for(i=0; i < l6ppudeArv; i++)
@@ -704,7 +704,7 @@ bool ETMRFAS::GeneL1(
                 tyvi= *gPrf + *gTyvi;
                 FSXSTRING geneVorm1 = *geneVorm;
                 geneVorm1 += FSxSTR(", ");
- 
+
                 if (l6pp.GetLength() > 0)
                     vi = l6pp[l6pp.GetLength()-1];
                 else
@@ -717,10 +717,10 @@ bool ETMRFAS::GeneL1(
                         kigi = FSxSTR("ki");
                     }
                 pValja->Add(
-                    (const FSxCHAR *)tyvi, 
-                    (const FSxCHAR *)l6pp, 
-                    (const FSxCHAR *)kigi, 
-                    (const FSxCHAR *)liik, 
+                    (const FSxCHAR *)tyvi,
+                    (const FSxCHAR *)l6pp,
+                    (const FSxCHAR *)kigi,
+                    (const FSxCHAR *)liik,
                     (const FSxCHAR *)geneVorm1);
                 }
             }
@@ -734,9 +734,9 @@ bool ETMRFAS::GeneSTV(
     const FSXSTRING *gSuffiks,    // suffiks morf analüüsija väljundist
     //const FSXSTRING *gSufSl,      // suffiksi son liik morf anal väljundist
     const FSXSTRING *sl,          // sõnaliigid, millesse kuuluvaid sonu tahetakse
-    const FSXSTRING *geneVormid,  // genetavate vormide loend 
-    const int algv_lopp,   // 0, -ma voi -d 
-    const int algv_vorm,   // sg_g[0], sg_n[0], ma voi pl_n[0] 
+    const FSXSTRING *geneVormid,  // genetavate vormide loend
+    const int algv_lopp,   // 0, -ma voi -d
+    const int algv_vorm,   // sg_g[0], sg_n[0], ma voi pl_n[0]
     const FSXSTRING *pGeneKigi)
     {
     FSUNUSED(sl);
@@ -755,11 +755,11 @@ bool ETMRFAS::GeneSTV(
 
     if (gSuffiks->GetLength() >= SUFLEN)
         return true; //* ei saa olla sufiks *
-    
+
     tmpSuf = (const FSxCHAR *)*gSuffiks;
     //* otsime välja sufiksi indeksi sufiksite tabelist *
     sufNr=suffnr((const FSxCHAR *)tmpSuf);
-    if (sufNr == -1)    
+    if (sufNr == -1)
         {
         //* sellist sufiksit pole olemas, *
         //* see juhtub nt siis, kui suf loendis on pikem sufiks, *
@@ -775,13 +775,13 @@ bool ETMRFAS::GeneSTV(
         for (i=0; i < mitu_maha; i++)
             {
             tmpSuf = tmpSuf1.Mid(i);
-	    if ((sufNr=suffnr((const FSxCHAR *)tmpSuf)) > -1)    
+	    if ((sufNr=suffnr((const FSxCHAR *)tmpSuf)) > -1)
                 break; //* suffiks käes *
             }
-        if (i == mitu_maha) // tavaliselt seda ei saa olla, et ei leia sobivat suffiksit 
+        if (i == mitu_maha) // tavaliselt seda ei saa olla, et ei leia sobivat suffiksit
             {
             if(*gSuffiks == FSxSTR("nud") || *gSuffiks == FSxSTR("tud") || *gSuffiks == FSxSTR("dud"))
-                { // ... aga vahel ikka saab: leksikonis on ainult S nu, tu ja du, mitte A nud, tud ja dud... 
+                { // ... aga vahel ikka saab: leksikonis on ainult S nu, tu ja du, mitte A nud, tud ja dud...
                 tmpSuf = gSuffiks->Left(2);
                 sufNr=suffnr((const FSxCHAR *)tmpSuf);
                 adhocnu = 1;  // lipp püsti
@@ -807,10 +807,10 @@ bool ETMRFAS::GeneSTV(
                     tmpSuf1.Right(2) == FSxSTR("ke") ||
                     tmpSuf1.Right(4) == FSxSTR("kene"))); // ... aga teatud juhtudel ikkagi võiks
             else
-                continue; 
+                continue;
         // vaja kontrollida, kas on ikka vajaliku algvormi tüvi
         gTyviUus = tmpSuf1;
-        if(OtsiTyvi(&(sufix[sufNr].suftyinf[i].idx), 
+        if(OtsiTyvi(&(sufix[sufNr].suftyinf[i].idx),
                         algv_lopp, algv_vorm, &gTyviUus)==false)
             continue; //polnud sobiv tüvi
         if(gTyviUus != tmpSuf1) // pole õige algvormi tüvi
@@ -826,7 +826,7 @@ bool ETMRFAS::GeneSTV(
 
         tmpSuf2 = tmpSuf1;
         if((rec1=tyveMuutused.Get(sufix[sufNr].suftyinf[i].idx.tab_idx,sufix[sufNr].suftyinf[i].idx.blk_idx))==NULL)
-            { 
+            {
             return false;
             }
         // leia muutumatu tüveosa
@@ -842,8 +842,8 @@ bool ETMRFAS::GeneSTV(
         FSXSTRING vormityvi;
         FSXSTRING tyvi, utyvi;
         for (j=0; j < rec->n; j++) // vt selle sufiksi paradigma kõiki "tüvesid"
-            { 
-            
+            {
+
             utyvi = gPrf->Right(sufix[sufNr].mitutht); // tavaliselt "", aga umuslik puhul u
             tyvi = tmpSuf1.Left(muutumatu) + rec->mkt1c[j].tyMuut;
             utyvi += tyvi;
@@ -852,7 +852,7 @@ bool ETMRFAS::GeneSTV(
             jjnSonaLiiki = jjsonaLiigid->GetLength();
             for (jj=0; jj < jjnSonaLiiki; jj++) // vt "tüve" kõiki homonüüme
                 {
-                if ((*sonaliik[(unsigned char) sufix[tmpsufnr].ssl])[jj] != sl1) 
+                if ((*sonaliik[(unsigned char) sufix[tmpsufnr].ssl])[jj] != sl1)
                      continue; // pole sama sõnaliik ...
                 //if (sufix[sufNr].suftyinf[i].idx.tab_idx != sufix[tmpsufnr].suftyinf[jj].idx.tab_idx)
                     //continue; // pole sama paradigma
@@ -871,14 +871,14 @@ bool ETMRFAS::GeneSTV(
                         uustyvi += tyvi;
                         uustyvi += FSxSTR("d");
                         pValja->Add(
-                                (const FSxCHAR *) uustyvi, 
-                                FSxSTR(""), 
-                                (const FSxCHAR *)*pGeneKigi, 
-                                FSxSTR("A"), 
+                                (const FSxCHAR *) uustyvi,
+                                FSxSTR(""),
+                                (const FSxCHAR *)*pGeneKigi,
+                                FSxSTR("A"),
                                 FSxSTR("sg n, "));
                         FSXSTRING uusgeneVormid = geneVormid->Mid(0, sgn_koht);
                         uusgeneVormid += geneVormid->Mid(sgn_koht+5);
-                        if (GeneL(pValja, gPrf, &vormityvi, (const FSxCHAR) 'A', rec->mkt1c[j].lgNr, 
+                        if (GeneL(pValja, gPrf, &vormityvi, (const FSxCHAR) 'A', rec->mkt1c[j].lgNr,
                              &uusgeneVormid, pGeneKigi)==false)
                              {
                              return false;
@@ -886,17 +886,17 @@ bool ETMRFAS::GeneSTV(
                         }
                     else
                         {
-                        if (GeneL(pValja, gPrf, &vormityvi, (const FSxCHAR) 'A', rec->mkt1c[j].lgNr, 
+                        if (GeneL(pValja, gPrf, &vormityvi, (const FSxCHAR) 'A', rec->mkt1c[j].lgNr,
                              geneVormid, pGeneKigi)==false)
                              {
                              return false;
                              }
                         }
                     }
-                else 
- 
+                else
+
                     {
-                     if(GeneL(pValja, gPrf, &vormityvi, (const FSxCHAR) sl1, rec->mkt1c[j].lgNr, 
+                     if(GeneL(pValja, gPrf, &vormityvi, (const FSxCHAR) sl1, rec->mkt1c[j].lgNr,
                          geneVormid, pGeneKigi)==false)
                          {
                          return false;
@@ -918,17 +918,17 @@ bool ETMRFAS::ArvaGene2(       // -1==siiber; 0==ok
     //char algv_lopp;
     //int algv_vorm,
     int viimne;
-    
+
     FSXSTRING gene_liik = KOIK_LIIGID;  // igaks juhuks
     FSXSTRING genetud_tyvi, gene_t1, gene_t2, ette, kigi;
     int i, sgn=0;
     FSxCHAR vi;
- 
+
     if (pMrfTul->Get_vormid(FSxSTR("sg n,")) != -1)
-         sgn = 1; // analyyside hulgas leidub sg n 
+         sgn = 1; // analyyside hulgas leidub sg n
     i = pMrfTul->Get_vormid(FSxSTR("ma,"));
     if (i != -1 && pMrfTul->Get_vormid(FSxSTR("tama,")) != i)
-         sgn = 1; // analyyside hulgas leidub ma 
+         sgn = 1; // analyyside hulgas leidub ma
     if (*pGeneLiik == FSxSTR("*"))
         gene_liik = KOIK_LIIGID;
     else
@@ -936,7 +936,7 @@ bool ETMRFAS::ArvaGene2(       // -1==siiber; 0==ok
     // vt kõiki algvorme
     //
     kigi = FSxSTR("");
-    viimne = pValja->idxLast; 
+    viimne = pValja->idxLast;
     for (i=0; i < pMrfTul->idxLast; i++)
         {
         if ((*pMrfTul)[i]->vormid.Find(FSxSTR("?")) != -1 || (*pMrfTul)[i]->vormid.Find(FSxSTR(",")) == -1) // muutumatu s�na
@@ -960,11 +960,11 @@ bool ETMRFAS::ArvaGene2(       // -1==siiber; 0==ok
                         kigi = FSxSTR("ki");
                     }
                 pValja->Add(
-                    (const FSxCHAR *)genetud_tyvi, 
+                    (const FSxCHAR *)genetud_tyvi,
                     FSxSTR(""),  // 0-lõpu puhul 0 ei lisa
-                    (const FSxCHAR *)kigi, // 
-                    (*pMrfTul)[i]->sl, 
-                    (*pMrfTul)[i]->vormid);  
+                    (const FSxCHAR *)kigi, //
+                    (*pMrfTul)[i]->sl,
+                    (*pMrfTul)[i]->vormid);
 
                 continue;
                 }
@@ -976,7 +976,7 @@ bool ETMRFAS::ArvaGene2(       // -1==siiber; 0==ok
             //algv_lopp = null_lopp;
             //algv_vorm = sg_n;
             }
-        else if ((*pMrfTul)[i]->vormid.Left(3) == FSxSTR("ma,")) 
+        else if ((*pMrfTul)[i]->vormid.Left(3) == FSxSTR("ma,"))
             {
             sgn=1;        //* on leitud lihtsaim algvorm *
             //algv_lopp = lopp_ma;
@@ -1047,7 +1047,7 @@ bool ETMRFAS::ArvaGene2(       // -1==siiber; 0==ok
                 res = chkwrd(&tulemus, &analoogvorm, a_pikkus, 1, &tagasi, ALGV_LIIK);
                 assert(res <= ALL_RIGHT);
 	        if (res > ALL_RIGHT)
-	            return false; // viga; ei saa olla 
+	            return false; // viga; ei saa olla
             if (!tulemus.on_tulem())
                 {
                 assert(tulemus.on_tulem());
@@ -1055,7 +1055,7 @@ bool ETMRFAS::ArvaGene2(       // -1==siiber; 0==ok
             assert(tagasi==1);
 	    if (!tulemus.on_tulem())    // polnud norm. eesti k. sõna
 	        return false; // viga; ei saa olla
-           
+
             rs = Gene2Detailne(&analoog_tulemus, &tulemus, &tyhi, pGeneLiik, pGeneVormid, pGeneKigi);
             if (rs == false)
                 return false;
@@ -1064,8 +1064,8 @@ bool ETMRFAS::ArvaGene2(       // -1==siiber; 0==ok
             pValja->Move2Tail(&analoog_tulemus);
             }
        }
-           
-    if (pValja->idxLast > viimne) // midagi leitigi 
+
+    if (pValja->idxLast > viimne) // midagi leitigi
         {
         pValja->eKustTulemused = eMRF_SO; // tulemused tulid sünteesi-oletajast
         }
