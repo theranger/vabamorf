@@ -3,11 +3,10 @@
 #include "../proof/proof.h"
 #include "JNIException.h"
 
-JNIEXPORT void JNICALL Java_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring corpus, jstring lingFile) {
+JNIEXPORT void JNICALL Java_ee_risk_vabamorf_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring lingFile, jobject corpus) {
 	CLinguistic linguistic;
 	const char *nLingFile = env->GetStringUTFChars(lingFile, NULL);
-	const char *nCorpus = env->GetStringUTFChars(corpus, NULL);
-	CFSVar cfsCorpus(nCorpus);
+	CFSVar cfsCorpus;
 
 	try {
 		linguistic.Open(nLingFile);
@@ -15,7 +14,6 @@ JNIEXPORT void JNICALL Java_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring 
 		linguistic.Close();
 
 		env->ReleaseStringUTFChars(lingFile, nLingFile);
-		env->ReleaseStringUTFChars(corpus, nCorpus);
 
 		for(ssize_t pos = 0; pos < results.GetSize(); pos++) {
 			wprintf(L"root=%ls, pos=%lc, form=%ls, ending=%ls, clitic=%ls",
@@ -39,6 +37,6 @@ JNIEXPORT void JNICALL Java_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring 
 
 }
 
-JNIEXPORT jstring JNICALL Java_JVabamorf_getModuleName(JNIEnv *env, jobject obj) {
+JNIEXPORT jstring JNICALL Java_ee_risk_vabamorf_JVabamorf_getModuleName(JNIEnv *env, jobject obj) {
 	return (*env).NewStringUTF("Vabamorf JNI bridge");
 }
