@@ -10,3 +10,4 @@ set(SOURCE_FILES
 
 add_library(${MODULE_NAME} ${SOURCE_FILES})
 add_library(${MODULE_NAME}-shared SHARED ${SOURCE_FILES})
+target_link_libraries(${MODULE_NAME}-shared ${PROJECT_NAME}-fsc-shared)
