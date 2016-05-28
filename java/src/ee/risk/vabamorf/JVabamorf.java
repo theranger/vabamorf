@@ -22,14 +22,8 @@ public class JVabamorf {
 			return;
 		}
 
-		Sentence sentence = new Sentence();
-		sentence.addWord("Täna");
-		sentence.addWord("on");
-		sentence.addWord("vihmane");
-		sentence.addWord("ilm");
-
 		ArrayList<Sentence> sentences = new ArrayList<>();
-		sentences.add(sentence);
+		sentences.add(new Sentence("Täna on vihmane ilm"));
 
 		JVabamorf jVabamorf = new JVabamorf();
 		System.out.println(jVabamorf.getModuleName());

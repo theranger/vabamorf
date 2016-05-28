@@ -5,41 +5,37 @@
 #include "ArrayList.cpp"
 #include "Sentence.h"
 
+static void jvabamorf_handle_results(CFSArray<CMorphInfos> &results, Sentence &sentence) {
+	for(ssize_t i = 0; i < results.GetSize(); i++) {
+		wprintf(L"Handling result %ld [%ls]: ", i, results[i].m_szWord.GetString());
+		for (ssize_t j = 0; j < results[i].m_MorphInfo.GetSize(); j++) {
+			wprintf(L"%ld: %ls ", j, results[i].m_MorphInfo[j].m_szRoot.GetString());
+		}
+		printf("\n");
+	}
+}
+
+static void jvabamorf_analyze_sentence(CLinguistic &linguistic, Sentence &sentence) {
+	CPTWordArray words;
+	PTWSplitBuffer(sentence.toCFSWString(), words);
+	CFSArray<CMorphInfos> results = linguistic.AnalyzeSentence(words);
+	jvabamorf_handle_results(results, sentence);
+}
+
 JNIEXPORT void JNICALL Java_ee_risk_vabamorf_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring lingFile, jobject corpus) {
 	CLinguistic linguistic;
 	ArrayList<Sentence> arrayList(env, corpus);
 	const char *nLingFile = env->GetStringUTFChars(lingFile, NULL);
-	CFSVar cfsCorpus;
-
-	printf("Sentence count: %ld\n", arrayList.getSize());
-	for (ssize_t i = 0; i < arrayList.getSize(); i++) {
-		Sentence sentence = arrayList.get(i);
-		ArrayList<Word> words = sentence.words;
-		printf("Word count: %ld\n", words.getSize());
-
-		for (ssize_t j = 0; j < words.getSize(); j++) {
-			Word word = words.get(j);
-			printf("Word data: %s", word.getData().c_str());
-		}
-	}
-
 
 	try {
 		linguistic.Open(nLingFile);
-		CFSArray<CMorphInfo> results = linguistic.Analyze(cfsCorpus.GetWString());
-		linguistic.Close();
-
-		env->ReleaseStringUTFChars(lingFile, nLingFile);
-
-		for(ssize_t pos = 0; pos < results.GetSize(); pos++) {
-			wprintf(L"root=%ls, pos=%lc, form=%ls, ending=%ls, clitic=%ls",
-					results[pos].m_szRoot.GetString(),
-					results[pos].m_cPOS,
-					results[pos].m_szForm.GetString(),
-					results[pos].m_szEnding.GetString(),
-					results[pos].m_szClitic.GetString()
-			);
+		for (ssize_t i = 0; i < arrayList.getSize(); i++) {
+			Sentence sentence = arrayList.get(i);
+			jvabamorf_analyze_sentence(linguistic, sentence);
 		}
+
+		linguistic.Close();
+		env->ReleaseStringUTFChars(lingFile, nLingFile);
 	}
 	catch (CLinguisticException &ex) {
 		if (ex.m_lMajor == CLinguisticException::MAINDICT && ex.m_lMinor == CLinguisticException::UNDEFINED) {

@@ -18,8 +18,6 @@ private:
 	JNIEnv *env;
 	jobject word;
 	jmethodID midGetData;
-
-	std::string data;
 };
 
 

@@ -7,6 +7,12 @@ import java.util.ArrayList;
  */
 public class Sentence {
 
+	private String data;
+
+	public Sentence(String sentence) {
+		data = sentence;
+	}
+
 	private ArrayList<Word> words = new ArrayList<>();
 
 	public ArrayList<Word> getWords() {
@@ -19,5 +25,13 @@ public class Sentence {
 
 	public void addWord(String word) {
 		words.add(new Word(word));
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 }
