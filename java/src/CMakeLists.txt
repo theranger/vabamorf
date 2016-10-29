@@ -1,7 +1,7 @@
 
 #If JAVA_HOME is not set, JNI module will not be properly initialized
 if(APPLE)
-	set(ENV{JAVA_HOME} "/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home")
+	set(CMAKE_FIND_FRAMEWORK LAST)
 else(APPLE)
 	set(ENV{JAVA_HOME} "/usr/lib/jvm/jdk-8-oracle-x64")
 endif(APPLE)
