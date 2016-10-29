@@ -13,8 +13,9 @@ static void jvabamorf_handle_results(CFSArray<CMorphInfos> &results, Sentence &s
 		}
 		printf("\n");
 
-		std::wstring wstring(results[i].m_szWord.GetString());
-		sentence.addWord(std::string(wstring.begin(), wstring.end()));
+		String string(sentence.getEnv(), results[i].m_szWord.GetString());
+		Word word(sentence.getEnv(), string);
+		sentence.addWord(word);
 	}
 }
 

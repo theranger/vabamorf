@@ -7,13 +7,23 @@
 
 #include <string>
 #include <jni.h>
+#include "String.h"
 
+#define JNI_WORD_CLASS "ee/risk/vabamorf/model/Word"
+#define JNI_WORD_SG "L" JNI_WORD_CLASS ";"
 class Word {
 
+	friend class Sentence;
+
 public:
-	Word(JNIEnv *env, std::string data);
+	#define JNI_WORD_INIT_FN "<init>"
+	#define JNI_WORD_INIT_SG "(" JNI_STRING_SG ")V"
+	Word(JNIEnv *env, String data);
 	Word(JNIEnv *env, jobject word);
-	std::string getData();
+
+	#define JNI_WORD_DATA_FN "getData"
+	#define JNI_WORD_DATA_SG "()" JNI_STRING_SG
+	String getData();
 
 private:
 	JNIEnv *env;

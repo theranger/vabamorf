@@ -5,9 +5,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/json/json.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/json/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/json/json.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/jni/Sentence.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jni/String.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/jni/ArrayList.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/jni/Word.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jni/String.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/jni/Sentence.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/jni/Sentence.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/jni/JNIException.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/jni/JNIException.cpp" isTestSource="false" />

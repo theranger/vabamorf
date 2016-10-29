@@ -23,8 +23,8 @@ public class Sentence {
 		this.words = words;
 	}
 
-	public void addWord(String word) {
-		words.add(new Word(word));
+	public void addWord(Word word) {
+		words.add(word);
 	}
 
 	public String getData() {

@@ -5,6 +5,7 @@
 #include "Sentence.h"
 #include "ArrayList.cpp"
 #include "../fsc/fsc.h"
+#include "String.h"
 
 
 Sentence::Sentence(JNIEnv *env, jobject sentence) :
@@ -21,13 +22,9 @@ Sentence::Sentence(JNIEnv *env, jobject sentence) :
 	midAddWord = env->GetMethodID(sentenceClass, JNI_SENTENCE_ADD_WORD_FN, JNI_SENTENCE_ADD_WORD_SG);
 }
 
-std::string Sentence::getData() {
-	jstring string = static_cast<jstring>(env->CallObjectMethod(sentence, midGetData));
-
-	const char *data = env->GetStringUTFChars(string, NULL);
-	std::string ret = (data);
-	env->ReleaseStringUTFChars(string, data);
-	return ret;
+String Sentence::getData() {
+	String string(env, static_cast<jstring>(env->CallObjectMethod(sentence, midGetData)));
+	return string;
 }
 
 CFSWString Sentence::toCFSWString() {
@@ -37,10 +34,12 @@ CFSWString Sentence::toCFSWString() {
 	return CFSVar(data).GetWString();
 }
 
-void Sentence::addWord(std::string data) {
-	jstring string = env->NewStringUTF(data.c_str());
-	env->CallObjectMethod(sentence, midAddWord, string);
-	env->DeleteLocalRef(string);
+void Sentence::addWord(const Word &word) {
+	env->CallObjectMethod(sentence, midAddWord, word.word);
+}
+
+JNIEnv *Sentence::getEnv() {
+	return env;
 }
 
 

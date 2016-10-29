@@ -25,6 +25,10 @@ public class Word {
 		return morphInfo;
 	}
 
+	public void addMorphInfo(MorphInfo morphInfo) {
+		this.morphInfo.add(morphInfo);
+	}
+
 	public void setMorphInfo(ArrayList<MorphInfo> morphInfo) {
 		this.morphInfo = morphInfo;
 	}

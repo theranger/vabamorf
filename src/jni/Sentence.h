@@ -9,31 +9,35 @@
 
 #include "Word.h"
 #include "ArrayList.h"
+#include "String.h"
 
+#define JNI_SENTENCE_CLASS "ee/risk/vabamorf/model/Sentence"
+#define JNI_SENTENCE_SG "L" JNI_SENTENCE_CLASS ";"
 class Sentence {
 
 public:
 	Sentence(JNIEnv *env, jobject sentence);
 
 	#define JNI_SENTENCE_WORDS_FN "getWords"
-	#define JNI_SENTENCE_WORDS_SG "()Ljava/util/ArrayList;"
+	#define JNI_SENTENCE_WORDS_SG "()" JNI_ARRAY_LIST_SG
 	ArrayList<Word> words;
 
 	#define JNI_SENTENCE_ADD_WORD_FN "addWord"
-	#define JNI_SENTENCE_ADD_WORD_SG "(Ljava/lang/String;)V"
-	void addWord(std::string data);
+	#define JNI_SENTENCE_ADD_WORD_SG "(" JNI_WORD_SG ")V"
+	void addWord(const Word &word);
 
-	std::string getData();
+	#define JNI_SENTENCE_DATA_FN "getData"
+	#define JNI_SENTENCE_DATA_SG "()" JNI_STRING_SG
+	String getData();
+
 	CFSWString toCFSWString();
+	JNIEnv * getEnv();
 
 private:
 	JNIEnv *env;
 	jobject sentence;
 	jmethodID midGetData;
 	jmethodID midAddWord;
-
-	#define JNI_SENTENCE_DATA_FN "getData"
-	#define JNI_SENTENCE_DATA_SG "()Ljava/lang/String;"
 };
 
 #endif //VABAMORF_SENTENCE_H
