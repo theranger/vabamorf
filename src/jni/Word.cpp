@@ -9,9 +9,6 @@ Word::Word(JNIEnv *env, String data) {
 
 	jclass wordClass = env->FindClass(JNI_WORD_CLASS);
 	jmethodID constructor = env->GetMethodID(wordClass, JNI_WORD_INIT_FN, JNI_WORD_INIT_SG);
-
-	printf("Creating word %s\n", data.toString().c_str());
-
 	word = env->NewObject(wordClass, constructor, data.toJString());
 }
 
@@ -21,6 +18,10 @@ Word::Word(JNIEnv *env, jobject word) {
 
 	jclass wordClass = env->GetObjectClass(word);
 	midGetData = env->GetMethodID(wordClass, JNI_WORD_DATA_FN, JNI_WORD_DATA_SG);
+}
+
+Word::~Word() {
+	env->DeleteLocalRef(word);
 }
 
 String Word::getData() {

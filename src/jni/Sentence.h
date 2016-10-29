@@ -18,6 +18,8 @@ class Sentence {
 public:
 	Sentence(JNIEnv *env, jobject sentence);
 
+	virtual ~Sentence();
+
 	#define JNI_SENTENCE_WORDS_FN "getWords"
 	#define JNI_SENTENCE_WORDS_SG "()" JNI_ARRAY_LIST_SG
 	ArrayList<Word> words;

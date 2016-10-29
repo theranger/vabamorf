@@ -21,6 +21,8 @@ public:
 	Word(JNIEnv *env, String data);
 	Word(JNIEnv *env, jobject word);
 
+	virtual ~Word();
+
 	#define JNI_WORD_DATA_FN "getData"
 	#define JNI_WORD_DATA_SG "()" JNI_STRING_SG
 	String getData();

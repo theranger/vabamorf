@@ -22,6 +22,10 @@ Sentence::Sentence(JNIEnv *env, jobject sentence) :
 	midAddWord = env->GetMethodID(sentenceClass, JNI_SENTENCE_ADD_WORD_FN, JNI_SENTENCE_ADD_WORD_SG);
 }
 
+Sentence::~Sentence() {
+	env->DeleteLocalRef(sentence);
+}
+
 String Sentence::getData() {
 	String string(env, static_cast<jstring>(env->CallObjectMethod(sentence, midGetData)));
 	return string;
