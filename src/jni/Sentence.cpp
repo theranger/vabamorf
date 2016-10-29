@@ -18,6 +18,7 @@ Sentence::Sentence(JNIEnv *env, jobject sentence) :
 
 	jclass sentenceClass = env->GetObjectClass(sentence);
 	midGetData = env->GetMethodID(sentenceClass, JNI_SENTENCE_DATA_FN, JNI_SENTENCE_DATA_SG);
+	midAddWord = env->GetMethodID(sentenceClass, JNI_SENTENCE_ADD_WORD_FN, JNI_SENTENCE_ADD_WORD_SG);
 }
 
 std::string Sentence::getData() {
@@ -35,3 +36,11 @@ CFSWString Sentence::toCFSWString() {
 	const char *data = env->GetStringUTFChars(string, NULL);
 	return CFSVar(data).GetWString();
 }
+
+void Sentence::addWord(std::string data) {
+	jstring string = env->NewStringUTF(data.c_str());
+	env->CallObjectMethod(sentence, midAddWord, string);
+	env->DeleteLocalRef(string);
+}
+
+

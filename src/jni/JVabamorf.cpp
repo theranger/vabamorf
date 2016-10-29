@@ -12,6 +12,9 @@ static void jvabamorf_handle_results(CFSArray<CMorphInfos> &results, Sentence &s
 			wprintf(L"%ld: %ls ", j, results[i].m_MorphInfo[j].m_szRoot.GetString());
 		}
 		printf("\n");
+
+		std::wstring wstring(results[i].m_szWord.GetString());
+		sentence.addWord(std::string(wstring.begin(), wstring.end()));
 	}
 }
 
@@ -34,18 +37,23 @@ JNIEXPORT void JNICALL Java_ee_risk_vabamorf_JVabamorf_analyze(JNIEnv *env, jobj
 			jvabamorf_analyze_sentence(linguistic, sentence);
 		}
 
-		linguistic.Close();
-		env->ReleaseStringUTFChars(lingFile, nLingFile);
+		goto cleanup;
 	}
 	catch (CLinguisticException &ex) {
 		if (ex.m_lMajor == CLinguisticException::MAINDICT && ex.m_lMinor == CLinguisticException::UNDEFINED) {
 			JNIException::LinguisticException(env, "File %s not found", nLingFile);
-			return;
+			goto release;
 		}
 
 		JNIException::LinguisticException(env, "Unknown error: file=%s, major=%ld, minor=%ld", nLingFile, ex.m_lMajor, ex.m_lMinor);
-		return;
+		goto cleanup;
 	}
+
+	cleanup:
+	linguistic.Close();
+
+	release:
+	env->ReleaseStringUTFChars(lingFile, nLingFile);
 
 }
 

@@ -11,6 +11,7 @@
 class Word {
 
 public:
+	Word(JNIEnv *env, std::string data);
 	Word(JNIEnv *env, jobject word);
 	std::string getData();
 

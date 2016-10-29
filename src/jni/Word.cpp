@@ -4,6 +4,15 @@
 
 #include "Word.h"
 
+Word::Word(JNIEnv *env, std::string data) {
+	this->env = env;
+
+	jclass wordClass = env->FindClass("ee/risk/vabamorf/model/Word");
+	jmethodID constructor = env->GetMethodID(wordClass, "<init>", "void(Ljava/lang/String);");
+
+	word = env->NewObject(wordClass, constructor, data.c_str());
+}
+
 Word::Word(JNIEnv *env, jobject word) {
 	this->env = env;
 	this->word = word;
@@ -20,4 +29,3 @@ std::string Word::getData() {
 	env->ReleaseStringUTFChars(string, data);
 	return ret;
 }
-
