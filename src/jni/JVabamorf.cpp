@@ -1,4 +1,5 @@
 
+#include <JVabamorf.h>
 #include "../proof/proof.h"
 #include "JNIException.h"
 #include "ArrayList.cpp"
@@ -27,9 +28,13 @@ static void jvabamorf_analyze_sentence(CLinguistic &linguistic, CDisambiguator &
 	CPTWordArray words;
 	PTWSplitBuffer(sentence.toCFSWString(), words);
 	CFSArray<CMorphInfos> results = linguistic.AnalyzeSentence(words);
+	printf("\n\nPreliminary results:\n");
+	printf("====================\n\n");
 	jvabamorf_handle_results(results, sentence);
 
 	CFSArray<CMorphInfos> disresults = disambiguator.Disambiguate(results);
+	printf("\n\nDisambiguated results:\n");
+	printf("======================\n\n");
 	jvabamorf_handle_results(disresults, sentence);
 }
 
