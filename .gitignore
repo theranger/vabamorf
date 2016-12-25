@@ -1,3 +1,4 @@
 bin/
 data/tmp/
 workspace.xml
+cmake-build-debug/
