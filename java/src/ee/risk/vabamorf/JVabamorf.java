@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class JVabamorf {
 
-	public native void analyze(String dict, ArrayList<Sentence> sentences);
+	public native void analyze(String lingFile, String disambFile, ArrayList<Sentence> sentences);
 	public native String getModuleName();
 
 	static {
@@ -17,16 +17,16 @@ public class JVabamorf {
 	}
 
 	public static void main(String[] args) throws LinguisticException {
-		if (args.length !=2) {
-			System.err.println("Usage: JVabamorf <et.dct> <corpus_string>");
+		if (args.length !=3) {
+			System.err.println("Usage: JVabamorf <et.dct> <et3.dct> <corpus_string>");
 			return;
 		}
 
 		ArrayList<Sentence> sentences = new ArrayList<>();
-		sentences.add(new Sentence("Täna on vihmane ilm"));
+		sentences.add(new Sentence("Vihmase ilmaga me õue ei lähe"));
 
 		JVabamorf jVabamorf = new JVabamorf();
 		System.out.println(jVabamorf.getModuleName());
-		jVabamorf.analyze(args[0], sentences);
+		jVabamorf.analyze(args[0], args[1], sentences);
 	}
 }
