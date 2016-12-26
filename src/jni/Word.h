@@ -22,6 +22,8 @@ public:
 	Word(JNIEnv *env, String data);
 	Word(JNIEnv *env, jobject word);
 
+	Word(const Word &other);
+	Word& operator=(const Word &other);
 	virtual ~Word();
 
 	#define JNI_WORD_DATA_FN "getData"

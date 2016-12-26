@@ -18,6 +18,8 @@ public:
 	String(JNIEnv *env, const std::wstring &string);
 	String(JNIEnv *env, wchar_t character);
 
+	String(const String &other);
+	String& operator=(const String &other);
 	virtual ~String();
 
 	std::string toString();

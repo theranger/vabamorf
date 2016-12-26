@@ -20,6 +20,8 @@ public:
 	#define JNI_MORPHINFO_INIT_SG "()V"
 	MorphInfo(JNIEnv *env);
 
+	MorphInfo(const MorphInfo &other);
+	MorphInfo& operator=(const MorphInfo &other);
 	virtual ~MorphInfo();
 
 

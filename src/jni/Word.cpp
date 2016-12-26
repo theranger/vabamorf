@@ -22,6 +22,25 @@ Word::Word(JNIEnv *env, jobject word) {
 	midAddMorphInfo = env->GetMethodID(wordClass, JNI_WORD_ADD_MORPHINFO_FN, JNI_WORD_ADD_MORPHINFO_SG);
 }
 
+Word::Word(const Word &other) :
+	env(other.env),
+	word(other.word),
+	midGetData(other.midGetData),
+	midAddMorphInfo(other.midAddMorphInfo)
+{
+	env->NewLocalRef(word);
+}
+
+Word &Word::operator=(const Word &other) {
+	this->env = other.env;
+	this->word = other.word;
+	this->midGetData = other.midGetData;
+	this->midAddMorphInfo = other.midAddMorphInfo;
+	env->NewLocalRef(word);
+
+	return *this;
+}
+
 Word::~Word() {
 	env->DeleteLocalRef(word);
 }

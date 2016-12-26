@@ -17,6 +17,31 @@ MorphInfo::MorphInfo(JNIEnv *env) {
 	midSetPos = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_POS_FN, JNI_MORPHINFO_SET_POS_SG);
 }
 
+MorphInfo::MorphInfo(const MorphInfo &other):
+	env(other.env),
+	morphInfo(other.morphInfo),
+	midSetRoot(other.midSetRoot),
+	midSetEnding(other.midSetEnding),
+	midSetClitic(other.midSetClitic),
+	midSetForm(other.midSetForm),
+	midSetPos(other.midSetPos)
+{
+	env->NewLocalRef(morphInfo);
+}
+
+MorphInfo &MorphInfo::operator=(const MorphInfo &other) {
+	this->env = other.env;
+	this->morphInfo = other.morphInfo;
+	this->midSetRoot = other.midSetRoot;
+	this->midSetEnding = other.midSetEnding;
+	this->midSetClitic = other.midSetClitic;
+	this->midSetForm = other.midSetForm;
+	this->midSetPos = other.midSetPos;
+	env->NewLocalRef(morphInfo);
+
+	return *this;
+}
+
 MorphInfo::~MorphInfo() {
 	env->DeleteLocalRef(morphInfo);
 }

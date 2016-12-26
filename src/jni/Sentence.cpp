@@ -22,6 +22,27 @@ Sentence::Sentence(JNIEnv *env, jobject sentence) :
 	midAddWord = env->GetMethodID(sentenceClass, JNI_SENTENCE_ADD_WORD_FN, JNI_SENTENCE_ADD_WORD_SG);
 }
 
+Sentence::Sentence(const Sentence &other) :
+	env(other.env),
+	sentence(other.sentence),
+	words(other.words),
+	midGetData(other.midGetData),
+	midAddWord(other.midAddWord)
+{
+	env->NewLocalRef(sentence);
+}
+
+Sentence &Sentence::operator=(const Sentence &other) {
+	this->env = other.env;
+	this->sentence = other.sentence;
+	this->words = other.words;
+	this->midGetData = other.midGetData;
+	this->midAddWord = other.midAddWord;
+	env->NewLocalRef(sentence);
+
+	return *this;
+}
+
 Sentence::~Sentence() {
 	env->DeleteLocalRef(sentence);
 }

@@ -18,6 +18,8 @@ class Sentence {
 public:
 	Sentence(JNIEnv *env, jobject sentence);
 
+	Sentence(const Sentence &other);
+	Sentence& operator=(const Sentence &other);
 	virtual ~Sentence();
 
 	#define JNI_SENTENCE_WORDS_FN "getWords"
