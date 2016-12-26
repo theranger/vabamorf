@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Word {
 	private String data;
-	private ArrayList<MorphInfo> morphInfo;
+	private ArrayList<MorphInfo> morphInfo = new ArrayList<>();
 
 	public Word(String data) {
 		this.data = data;

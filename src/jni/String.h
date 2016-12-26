@@ -16,11 +16,12 @@ public:
 	String(JNIEnv *env, jstring string);
 	String(JNIEnv *env, const std::string &string);
 	String(JNIEnv *env, const std::wstring &string);
+	String(JNIEnv *env, wchar_t character);
 
 	virtual ~String();
 
 	std::string toString();
-	jstring toJString();
+	jstring toJString() const;
 
 private:
 	JNIEnv *env;

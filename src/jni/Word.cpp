@@ -10,6 +10,7 @@ Word::Word(JNIEnv *env, String data) {
 	jclass wordClass = env->FindClass(JNI_WORD_CLASS);
 	jmethodID constructor = env->GetMethodID(wordClass, JNI_WORD_INIT_FN, JNI_WORD_INIT_SG);
 	word = env->NewObject(wordClass, constructor, data.toJString());
+	midAddMorphInfo = env->GetMethodID(wordClass, JNI_WORD_ADD_MORPHINFO_FN, JNI_WORD_ADD_MORPHINFO_SG);
 }
 
 Word::Word(JNIEnv *env, jobject word) {
@@ -18,6 +19,7 @@ Word::Word(JNIEnv *env, jobject word) {
 
 	jclass wordClass = env->GetObjectClass(word);
 	midGetData = env->GetMethodID(wordClass, JNI_WORD_DATA_FN, JNI_WORD_DATA_SG);
+	midAddMorphInfo = env->GetMethodID(wordClass, JNI_WORD_ADD_MORPHINFO_FN, JNI_WORD_ADD_MORPHINFO_SG);
 }
 
 Word::~Word() {
@@ -27,4 +29,8 @@ Word::~Word() {
 String Word::getData() {
 	String string(env, static_cast<jstring>(env->CallObjectMethod(word, midGetData)));
 	return string;
+}
+
+void Word::addMorphInfo(const MorphInfo &morphInfo) {
+	env->CallObjectMethod(word, midAddMorphInfo, morphInfo.morphInfo);
 }

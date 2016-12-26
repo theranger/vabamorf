@@ -20,6 +20,17 @@ public:
 		snprintf(buf, sizeof(buf), message.c_str(), args...);
 		LinguisticException(env, buf);
 	}
+
+	static void DisambiguatorException(JNIEnv *env, const char *msg);
+
+	template<typename ...T>
+	static void DisambiguatorException(JNIEnv *env, const std::string &message, T... args) {
+		ssize_t len = snprintf(NULL, 0, message.c_str(), args...);
+		char buf[len + 1];	// Include space for terminating NULL
+		snprintf(buf, sizeof(buf), message.c_str(), args...);
+		DisambiguatorException(env, buf);
+	}
+
 };
 
 

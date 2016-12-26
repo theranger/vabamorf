@@ -20,6 +20,9 @@ String::String(JNIEnv *env, const std::wstring &string) {
 	this->string = env->NewStringUTF(str.c_str());
 }
 
+String::String(JNIEnv *env, wchar_t character) : String(env, std::wstring(1, character)) {
+}
+
 String::~String() {
 	this->env->DeleteLocalRef(string);
 }
@@ -31,6 +34,7 @@ std::string String::toString() {
 	return ret;
 }
 
-jstring String::toJString() {
+
+jstring String::toJString() const {
 	return string;
 }

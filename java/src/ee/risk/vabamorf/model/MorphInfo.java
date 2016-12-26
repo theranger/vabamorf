@@ -9,6 +9,7 @@ public class MorphInfo {
 	private String ending;
 	private String clitic;
 	private String form;
+	private String pos;
 
 	public String getRoot() {
 		return root;
@@ -40,5 +41,13 @@ public class MorphInfo {
 
 	public void setForm(String form) {
 		this.form = form;
+	}
+
+	public String getPos() {
+		return pos;
+	}
+
+	public void setPos(String pos) {
+		this.pos = pos;
 	}
 }

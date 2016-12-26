@@ -1,0 +1,42 @@
+//
+// Created by The Ranger on 26.12.16.
+//
+
+#include "MorphInfo.h"
+
+MorphInfo::MorphInfo(JNIEnv *env) {
+	this->env = env;
+
+	jclass morphInfoClass = env->FindClass(JNI_MORPHINFO_CLASS);
+	jmethodID constructor = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_INIT_FN, JNI_MORPHINFO_INIT_SG);
+	morphInfo = env->NewObject(morphInfoClass, constructor);
+	midSetRoot = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_ROOT_FN, JNI_MORPHINFO_SET_ROOT_SG);
+	midSetEnding = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_ENDING_FN, JNI_MORPHINFO_SET_ENDING_SG);
+	midSetClitic = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_CLITIC_FN, JNI_MORPHINFO_SET_CLITIC_SG);
+	midSetForm = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_FORM_FN, JNI_MORPHINFO_SET_FORM_SG);
+	midSetPos = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_POS_FN, JNI_MORPHINFO_SET_POS_SG);
+}
+
+MorphInfo::~MorphInfo() {
+	env->DeleteLocalRef(morphInfo);
+}
+
+void MorphInfo::setRoot(const String &root) {
+	env->CallObjectMethod(morphInfo, midSetRoot, root.toJString());
+}
+
+void MorphInfo::setEnding(const String &ending) {
+	env->CallObjectMethod(morphInfo, midSetEnding, ending.toJString());
+}
+
+void MorphInfo::setClitic(const String &clitic) {
+	env->CallObjectMethod(morphInfo, midSetClitic, clitic.toJString());
+}
+
+void MorphInfo::setForm(const String &form) {
+	env->CallObjectMethod(morphInfo, midSetForm, form.toJString());
+}
+
+void MorphInfo::setPos(const String &pos) {
+	env->CallObjectMethod(morphInfo, midSetPos, pos.toJString());
+}
