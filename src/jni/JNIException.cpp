@@ -4,8 +4,8 @@
 
 #include "JNIException.h"
 
-#define LINGUISTIC_EX_CLASS "LinguisticException"
-#define DISAMBIGUATOR_EX_CLASS "DisambiguatorException"
+#define LINGUISTIC_EX_CLASS "ee/risk/vabamorf/LinguisticException"
+#define DISAMBIGUATOR_EX_CLASS "ee/risk/vabamorf/DisambiguatorException"
 
 void JNIException::LinguisticException(JNIEnv *env, const char *msg) {
 	jclass c = env->FindClass(LINGUISTIC_EX_CLASS);
