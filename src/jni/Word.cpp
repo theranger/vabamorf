@@ -11,7 +11,7 @@ Word::Word(JNIEnv *env, String data) :
 {
 	jclass wordClass = env->FindClass(JNI_WORD_CLASS);
 	jmethodID constructor = env->GetMethodID(wordClass, JNI_WORD_INIT_FN, JNI_WORD_INIT_SG);
-	word = env->NewObject(wordClass, constructor, data.toJString());
+	word = env->NewLocalRef(env->NewObject(wordClass, constructor, data.toJString()));
 
 	jmethodID midSetMorphInfo = env->GetMethodID(wordClass, JNI_WORD_SET_MORPHINFO_FN, JNI_WORD_SET_MORPHINFO_SG);
 	env->CallObjectMethod(word, midSetMorphInfo, morphInfos.arrayList);

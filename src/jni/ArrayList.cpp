@@ -10,14 +10,9 @@ template <typename T>
 ArrayList<T>::ArrayList(JNIEnv *env) {
 	this->env = env;
 
-	if (env == NULL) fprintf(stderr, "ENV is null!\n");
-
-	fprintf(stderr, "Finding array list class...");
 	jclass arrayClass = env->FindClass(JNI_ARRAY_LIST_CLASS);
-	if (arrayClass) fprintf(stderr, " found!\n");
-
 	jmethodID constructor = env->GetMethodID(arrayClass, JNI_ARRAY_LIST_INIT_FN, JNI_ARRAY_LIST_INIT_SG);
-	arrayList = env->NewObject(arrayClass, constructor);
+	arrayList = env->NewLocalRef(env->NewObject(arrayClass, constructor));
 	midSize = env->GetMethodID(arrayClass, "size", "()I");
 	midGet = env->GetMethodID(arrayClass, "get", "(I)Ljava/lang/Object;");
 	midAdd = env->GetMethodID(arrayClass, "add", "(Ljava/lang/Object;)Z");

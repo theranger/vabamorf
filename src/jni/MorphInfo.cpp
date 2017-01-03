@@ -9,7 +9,7 @@ MorphInfo::MorphInfo(JNIEnv *env) :
 {
 	jclass morphInfoClass = env->FindClass(JNI_MORPHINFO_CLASS);
 	jmethodID constructor = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_INIT_FN, JNI_MORPHINFO_INIT_SG);
-	morphInfo = env->NewObject(morphInfoClass, constructor);
+	morphInfo = env->NewLocalRef(env->NewObject(morphInfoClass, constructor));
 	midSetRoot = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_ROOT_FN, JNI_MORPHINFO_SET_ROOT_SG);
 	midSetEnding = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_ENDING_FN, JNI_MORPHINFO_SET_ENDING_SG);
 	midSetClitic = env->GetMethodID(morphInfoClass, JNI_MORPHINFO_SET_CLITIC_FN, JNI_MORPHINFO_SET_CLITIC_SG);
