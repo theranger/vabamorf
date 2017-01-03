@@ -31,7 +31,6 @@ public:
 	String getData();
 
 	CFSWString toCFSWString();
-	JNIEnv * getEnv();
 
 private:
 	JNIEnv *env;

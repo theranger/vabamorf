@@ -5,8 +5,7 @@
 #include "JNIException.h"
 #include "Sentence.h"
 
-static void jvabamorf_handle_results(CFSArray<CMorphInfos> &results, Sentence &sentence) {
-	JNIEnv *env = sentence.getEnv();
+static void jvabamorf_handle_results(JNIEnv *env, CFSArray<CMorphInfos> &results, Sentence &sentence) {
 
 	for (ssize_t i = 0; i < results.GetSize(); i++) {
 		String string(env, results[i].m_szWord.GetString());
@@ -28,17 +27,15 @@ static void jvabamorf_handle_results(CFSArray<CMorphInfos> &results, Sentence &s
 	}
 }
 
-static void jvabamorf_analyze_sentence(CLinguistic &linguistic, CDisambiguator &disambiguator, Sentence &sentence) {
+static void jvabamorf_analyze_sentence(JNIEnv *env, CLinguistic &linguistic, CDisambiguator &disambiguator, Sentence &sentence) {
 	CPTWordArray words;
 	PTWSplitBuffer(sentence.toCFSWString(), words);
 	CFSArray<CMorphInfos> linguisticResults = linguistic.AnalyzeSentence(words);
 	CFSArray<CMorphInfos> disambiguatedResults = disambiguator.Disambiguate(linguisticResults);
-	jvabamorf_handle_results(disambiguatedResults, sentence);
+	jvabamorf_handle_results(env, disambiguatedResults, sentence);
 }
 
 JNIEXPORT void JNICALL Java_ee_risk_vabamorf_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring linguisticDict, jstring disambiguatorDict, jobject sentence) {
-	fprintf(stderr, "Waiting for debugger to attach\n");
-	//sleep(10);
 	CLinguistic linguistic;
 	CDisambiguator disambiguator;
 
@@ -49,7 +46,7 @@ JNIEXPORT void JNICALL Java_ee_risk_vabamorf_JVabamorf_analyze(JNIEnv *env, jobj
 	try {
 		linguistic.Open(nLinguisticDict);
 		disambiguator.Open(nDisambiguatorDict);
-		jvabamorf_analyze_sentence(linguistic, disambiguator, nSentence);
+		jvabamorf_analyze_sentence(env, linguistic, disambiguator, nSentence);
 		goto cleanup;
 	}
 	catch (CLinguisticException &ex) {

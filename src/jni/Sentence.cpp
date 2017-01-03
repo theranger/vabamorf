@@ -50,8 +50,4 @@ CFSWString Sentence::toCFSWString() {
 	return CFSVar(data).GetWString();
 }
 
-JNIEnv *Sentence::getEnv() {
-	return env;
-}
-
 
