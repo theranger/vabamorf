@@ -9,6 +9,7 @@
 #include <jni.h>
 #include "String.h"
 #include "MorphInfo.h"
+#include "ArrayList.h"
 
 #define JNI_WORD_CLASS "ee/risk/vabamorf/model/Word"
 #define JNI_WORD_SG "L" JNI_WORD_CLASS ";"
@@ -30,15 +31,16 @@ public:
 	#define JNI_WORD_DATA_SG "()" JNI_STRING_SG
 	String getData();
 
-	#define JNI_WORD_ADD_MORPHINFO_FN "addMorphInfo"
-	#define JNI_WORD_ADD_MORPHINFO_SG "(" JNI_MORPHINFO_SG ")V"
-	void addMorphInfo(const MorphInfo &morphInfo);
+	#define JNI_WORD_SET_MORPHINFO_FN "setMorphInfo"
+	#define JNI_WORD_SET_MORPHINFO_SG "(" JNI_ARRAY_LIST_SG ")V"
+	ArrayList<MorphInfo> morphInfos;
+
+	jobject getObject();
 
 private:
 	JNIEnv *env;
 	jobject word;
 	jmethodID midGetData;
-	jmethodID midAddMorphInfo;
 };
 
 

@@ -22,13 +22,9 @@ public:
 	Sentence& operator=(const Sentence &other);
 	virtual ~Sentence();
 
-	#define JNI_SENTENCE_WORDS_FN "getWords"
-	#define JNI_SENTENCE_WORDS_SG "()" JNI_ARRAY_LIST_SG
+	#define JNI_SENTENCE_WORDS_FN "setWords"
+	#define JNI_SENTENCE_WORDS_SG "(" JNI_ARRAY_LIST_SG ")V"
 	ArrayList<Word> words;
-
-	#define JNI_SENTENCE_ADD_WORD_FN "addWord"
-	#define JNI_SENTENCE_ADD_WORD_SG "(" JNI_WORD_SG ")V"
-	void addWord(const Word &word);
 
 	#define JNI_SENTENCE_DATA_FN "getData"
 	#define JNI_SENTENCE_DATA_SG "()" JNI_STRING_SG
@@ -41,7 +37,6 @@ private:
 	JNIEnv *env;
 	jobject sentence;
 	jmethodID midGetData;
-	jmethodID midAddWord;
 };
 
 #endif //VABAMORF_SENTENCE_H

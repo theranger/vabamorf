@@ -19,6 +19,7 @@ public:
 	#define JNI_MORPHINFO_INIT_FN "<init>"
 	#define JNI_MORPHINFO_INIT_SG "()V"
 	MorphInfo(JNIEnv *env);
+	MorphInfo(JNIEnv *env, jobject morphInfo);
 
 	MorphInfo(const MorphInfo &other);
 	MorphInfo& operator=(const MorphInfo &other);
@@ -45,6 +46,7 @@ public:
 	#define JNI_MORPHINFO_SET_POS_SG "(" JNI_STRING_SG ")V"
 	void setPos(const String &pos);
 
+	jobject getObject();
 
 private:
 	JNIEnv *env;

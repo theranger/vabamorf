@@ -21,8 +21,7 @@ set(SOURCE_FILES
 		Sentence.cpp Sentence.h
 		Word.cpp Word.h
 		String.cpp String.h
-		MorphInfo.cpp MorphInfo.h
-		)
+		MorphInfo.cpp MorphInfo.h)
 
 add_library(${MODULE_NAME} SHARED ${SOURCE_FILES})
 

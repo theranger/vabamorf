@@ -1,8 +1,8 @@
 
 #include <JVabamorf.h>
+#include <zconf.h>
 #include "../proof/proof.h"
 #include "JNIException.h"
-#include "ArrayList.cpp"
 #include "Sentence.h"
 
 static void jvabamorf_handle_results(CFSArray<CMorphInfos> &results, Sentence &sentence) {
@@ -21,10 +21,10 @@ static void jvabamorf_handle_results(CFSArray<CMorphInfos> &results, Sentence &s
 			morphInfo.setClitic(String(env, info.m_szClitic.GetString()));
 			morphInfo.setForm(String(env, info.m_szForm.GetString()));
 			morphInfo.setPos(String(env, info.m_cPOS));
-			word.addMorphInfo(morphInfo);
+			word.morphInfos.add(morphInfo);
 		}
 
-		sentence.addWord(word);
+		sentence.words.add(word);
 	}
 }
 
@@ -37,6 +37,8 @@ static void jvabamorf_analyze_sentence(CLinguistic &linguistic, CDisambiguator &
 }
 
 JNIEXPORT void JNICALL Java_ee_risk_vabamorf_JVabamorf_analyze(JNIEnv *env, jobject obj, jstring linguisticDict, jstring disambiguatorDict, jobject sentence) {
+	fprintf(stderr, "Waiting for debugger to attach\n");
+	//sleep(10);
 	CLinguistic linguistic;
 	CDisambiguator disambiguator;
 

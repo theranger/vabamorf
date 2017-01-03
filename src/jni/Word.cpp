@@ -3,40 +3,45 @@
 //
 
 #include "Word.h"
+#include "ArrayList.cpp"
 
-Word::Word(JNIEnv *env, String data) {
-	this->env = env;
-
+Word::Word(JNIEnv *env, String data) :
+	env(env),
+	morphInfos(env)
+{
 	jclass wordClass = env->FindClass(JNI_WORD_CLASS);
 	jmethodID constructor = env->GetMethodID(wordClass, JNI_WORD_INIT_FN, JNI_WORD_INIT_SG);
 	word = env->NewObject(wordClass, constructor, data.toJString());
-	midAddMorphInfo = env->GetMethodID(wordClass, JNI_WORD_ADD_MORPHINFO_FN, JNI_WORD_ADD_MORPHINFO_SG);
+
+	jmethodID midSetMorphInfo = env->GetMethodID(wordClass, JNI_WORD_SET_MORPHINFO_FN, JNI_WORD_SET_MORPHINFO_SG);
+	env->CallObjectMethod(wordClass, midSetMorphInfo, morphInfos.arrayList);
 }
 
-Word::Word(JNIEnv *env, jobject word) {
-	this->env = env;
-	this->word = word;
-
+Word::Word(JNIEnv *env, jobject word) :
+	env(env),
+	morphInfos(env)
+{
+	this->word = env->NewLocalRef(word);
 	jclass wordClass = env->GetObjectClass(word);
 	midGetData = env->GetMethodID(wordClass, JNI_WORD_DATA_FN, JNI_WORD_DATA_SG);
-	midAddMorphInfo = env->GetMethodID(wordClass, JNI_WORD_ADD_MORPHINFO_FN, JNI_WORD_ADD_MORPHINFO_SG);
+
+	jmethodID midSetMorphInfo = env->GetMethodID(wordClass, JNI_WORD_SET_MORPHINFO_FN, JNI_WORD_SET_MORPHINFO_SG);
+	env->CallObjectMethod(wordClass, midSetMorphInfo, morphInfos.arrayList);
 }
 
 Word::Word(const Word &other) :
 	env(other.env),
-	word(other.word),
-	midGetData(other.midGetData),
-	midAddMorphInfo(other.midAddMorphInfo)
+	morphInfos(other.morphInfos),
+	midGetData(other.midGetData)
 {
-	env->NewLocalRef(word);
+	word = env->NewLocalRef(other.word);
 }
 
 Word &Word::operator=(const Word &other) {
 	this->env = other.env;
-	this->word = other.word;
+	this->word = env->NewLocalRef(other.word);
+	this->morphInfos = other.morphInfos;
 	this->midGetData = other.midGetData;
-	this->midAddMorphInfo = other.midAddMorphInfo;
-	env->NewLocalRef(word);
 
 	return *this;
 }
@@ -50,6 +55,6 @@ String Word::getData() {
 	return string;
 }
 
-void Word::addMorphInfo(const MorphInfo &morphInfo) {
-	env->CallObjectMethod(word, midAddMorphInfo, morphInfo.morphInfo);
+jobject Word::getObject() {
+	return word;
 }
