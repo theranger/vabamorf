@@ -14,7 +14,7 @@ Sentence::Sentence(JNIEnv *env, jobject sentence) :
 	midGetData = env->GetMethodID(sentenceClass, JNI_SENTENCE_DATA_FN, JNI_SENTENCE_DATA_SG);
 
 	jmethodID midSetWords = env->GetMethodID(sentenceClass, JNI_SENTENCE_WORDS_FN, JNI_SENTENCE_WORDS_SG);
-	env->CallObjectMethod(sentence, midSetWords, words.arrayList);
+	env->CallObjectMethod(this->sentence, midSetWords, words.arrayList);
 }
 
 Sentence::Sentence(const Sentence &other) :

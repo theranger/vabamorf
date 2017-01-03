@@ -14,7 +14,7 @@ Word::Word(JNIEnv *env, String data) :
 	word = env->NewObject(wordClass, constructor, data.toJString());
 
 	jmethodID midSetMorphInfo = env->GetMethodID(wordClass, JNI_WORD_SET_MORPHINFO_FN, JNI_WORD_SET_MORPHINFO_SG);
-	env->CallObjectMethod(wordClass, midSetMorphInfo, morphInfos.arrayList);
+	env->CallObjectMethod(word, midSetMorphInfo, morphInfos.arrayList);
 }
 
 Word::Word(JNIEnv *env, jobject word) :
