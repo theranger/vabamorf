@@ -23,14 +23,15 @@ String::String(JNIEnv *env, const std::wstring &string) {
 String::String(JNIEnv *env, wchar_t character) : String(env, std::wstring(1, character)) {
 }
 
-String::String(const String &other): env(other.env), string(other.string) {
-	env->NewLocalRef(this->string);
+String::String(const String &other) :
+	env(other.env)
+{
+	this->string = (jstring) env->NewLocalRef(other.string);
 }
 
 String &String::operator=(const String &other) {
 	this->env = other.env;
-	this->string = other.string;
-	env->NewLocalRef(this->string);
+	this->string = (jstring) env->NewLocalRef(this->string);
 
 	return *this;
 }
@@ -40,7 +41,7 @@ String::~String() {
 	this->env->DeleteLocalRef(string);
 }
 
-std::string String::toString() {
+std::string String::toString() const {
 	const char *data = env->GetStringUTFChars(string, NULL);
 	std::string ret(data);
 	env->ReleaseStringUTFChars(string, data);

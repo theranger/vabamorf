@@ -22,7 +22,7 @@ public:
 	String& operator=(const String &other);
 	virtual ~String();
 
-	std::string toString();
+	std::string toString() const;
 	jstring toJString() const;
 
 private:
