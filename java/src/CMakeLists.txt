@@ -3,14 +3,14 @@
 if(APPLE)
 	set(CMAKE_FIND_FRAMEWORK LAST)
 else(APPLE)
-	set(ENV{JAVA_HOME} "/usr/lib/jvm/jdk-8-oracle-x64")
+	set(JAVA_HOME "/usr/lib/jvm/default-java")
 endif(APPLE)
 
-find_package(JNI)
-if(NOT JNI_FOUND)
+find_package(Java COMPONENTS Development)
+if(NOT Java_FOUND)
 	message(WARNING "JNI not found, not building Java components")
 	return()
-endif(NOT JNI_FOUND)
+endif(NOT Java_FOUND)
 
 include(UseJava)
 
