@@ -1,6 +1,4 @@
-
 #include <JVabamorf.h>
-#include <zconf.h>
 #include "../proof/proof.h"
 #include "JNIException.h"
 #include "Sentence.h"
