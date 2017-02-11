@@ -1,9 +1,9 @@
 
-find_package(Java)
-if(NOT Java_FOUND)
+find_package(JNI)
+if(NOT JNI_FOUND)
 	message(WARNING "Java not found, not building Java components")
 	return()
-endif(NOT Java_FOUND)
+endif(NOT JNI_FOUND)
 
 # PROJECT_BINARY_DIR contains JNI header file
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${PROJECT_BINARY_DIR} -I${JAVA_INCLUDE_PATH} -I${JAVA_INCLUDE_PATH2}")
